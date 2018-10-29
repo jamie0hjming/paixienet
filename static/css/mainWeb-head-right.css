@@ -41,9 +41,9 @@ a {
     text-decoration: none;
     color: #555;
 }
-a: hover {
-    color: ;
-}
+/*a: hover {*/
+    /*color: ;*/
+/*}*/
 
 
 
@@ -331,6 +331,27 @@ a: hover {
     color: #666;
     padding: 0;
 }
+
+/*登录后的用户CSS*/
+.head_top_left_a4{
+	display: block;
+	float: left;
+	width: 88px;
+    height: 20px;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+
+/*退出按钮的用户CSS*/
+.head_top_left_a5{
+	display: block;
+	float: left;
+	width: 48px;
+    height: 20px;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+
 
 .head_top_left_a3:hover{ 	
 	color: orangered;

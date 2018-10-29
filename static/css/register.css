@@ -1,5 +1,6 @@
 body{font-family: Microsoft YaHei; overflow-y: scroll; color: #333; background-color: #f5f5f5;}
-a{cursor: pointer; text-decoration: none; color: #fff;}
+a {cursor: pointer; text-decoration: none; color: #fff;}
+#input {line-height: 40px;width: 50%;background: #0088cc;font-size: 20px;margin: 0;padding: 0;}
 /*register-area*/
 .register-area{overflow: hidden; padding: 40px 30px 58px 30px;}
 .register-area .form{float: left; width: 670px; border-right: 1px dashed #d2d2d2;}

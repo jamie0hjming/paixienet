@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'paixienet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'jamie1025',
+        'NAME': 'mydb',
         'POST': '3306',
-        'HOST': '182.254.228.82',
+        'HOST': '127.0.0.1',
         'USER':'root',
-        'PASSWORD':'xhc666',
+        'PASSWORD':'0732',
     }
 }
 

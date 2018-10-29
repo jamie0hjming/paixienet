@@ -23,7 +23,7 @@ body{font-family: Microsoft YaHei; overflow-y: scroll; color: #333; background-c
 .login-area .auto-login{line-height: 20px; height: 20px; color: #b7b7b7;}
 .login-area .auto-login input{display: inline-block; vertical-align: middle;}
 .login-area .auto-login a{float: right;}
-.login-area .orange-button{font-family: Microsoft YaHei; font-size: 16px; line-height: 40px; display: block; width: 272px; height: 40px; margin: 14px 0; padding: 0 10px; text-align: center; color: #fff; border: 0; border-radius: 2px; background: #f60;}
+.login-area .orange-button{font-family: Microsoft YaHei; font-size: 16px; line-height: 40px; display: block; width: 292px; height: 40px; margin: 14px 0; padding: 0 10px; text-align: center; color: #fff; border: 0; border-radius: 2px; background: #f60;}
 .login-area .auto-login a.orange-button:hover{text-decoration: none;}
 .login-area .other-login{line-height: 24px; color: #b7b7b7;}
 .login-area .other-login p{overflow: hidden; margin-right: -11px; padding: 5px 0 0 3px;}

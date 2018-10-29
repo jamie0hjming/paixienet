@@ -1,17 +1,31 @@
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>拍鞋网</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/base.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/goodsinfo.css">
-    <script src="../static/js/jquery-1.12.3.js"></script>
-    <script src="../static/js/jquery.cookie.js"></script>
-    <!--<script src="../static/js/index.js"></script>-->
-    <script src="../static/js/goods.js"></script>
+{#    <link rel="stylesheet" type="text/css" href="css/base.css">#}
+{#    <link rel="stylesheet" type="text/css" href="css/layout.css">#}
+{#    <link rel="stylesheet" type="text/css" href="css/goodsinfo.css">#}
+{#    <script src="js/jquery-1.12.3.js"></script>#}
+{#    <script src="js/jquery.cookie.js"></script>#}
+{#    <!--<script src="js/index.js"></script>-->#}
+{#    <script src="js/goods.js"></script>#}
+
+     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/goodsinfo.css' %}">
+    <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script src="{% static 'js/goods.js' %}"></script>
+
+    <script src="{% static 'js/jstest.js' %}"></script>
 </head>
+
+
+
 <body>
+
 <div class="allrightshow">
     <div class="allright-top">
         <ul>
@@ -129,8 +143,8 @@
     <div class="head-sobox">
         <form action="#" id="head-sobox">
             <div class="formp">
-                <input id="head_sotext" class="hea-sotext" type="text"/>
-                <input id="head_sobtn" class="head-sobtn yh" type="button" value="搜 索" />
+                <input id="head_sotext" class="hea-sotext" type="text">
+                <input id="head_sobtn" class="head-sobtn yh" type="button" value="搜 索">
             </div>
         </form>
         <div class="so-text">
@@ -166,7 +180,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox1.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox1.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -244,7 +258,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox2.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox2.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -322,7 +336,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox3.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox3.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -400,7 +414,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox4.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox4.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -474,11 +488,11 @@
         <a href="#">休闲鞋</a>
         <a href="#">篮球鞋</a>
     </p>
-    <div class="nav-boxshow" >
+    <div class="nav-boxshow">
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox5.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox5.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -556,7 +570,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox6.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox6.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -634,7 +648,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox7.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox7.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -709,7 +723,7 @@
 </div>
 <div class="head-rightimg">
     <a href="#">
-        <img src="images/app.jpg" alt="" />
+        <img src="{% static 'images/app.jpg' %}" alt="">
     </a>
 </div>
 </div>
@@ -718,16 +732,16 @@
     <div class="main">
         <div class="location">
             <a href="#">拍鞋首页</a>
-            >
+            &gt;
             <a href="#">康踏官方网站</a>
-            >
+            &gt;
             <a href="#">康踏跑步鞋</a>
 
         </div>
     <div class="side">
         <div class="self">
             <a class="self-logo" href="#">
-                <img src="" alt="">
+                <img src="{% static '' %}" alt="">
             </a>
             <a class="self-kefu" href="#">
                 <i></i>
@@ -743,9 +757,9 @@
     </div>
     <div class="goodsimg">
         <div class="bigimg">
-        	<div id="smallArea"></div>
+        	<div id="smallArea" style="width: 209px; height: 209px;"></div>
         </div>
-        <div id="bigArea">
+        <div id="bigArea" style="">
         	<div class="bbigimg"></div>
         </div>
         <i class="previmg"></i>
@@ -755,22 +769,22 @@
                     <a href="#"></a>
                 </li>
                 <li>
-                    <a href="#"><img src="" alt=""></a>
+                    <a href="#"><img src="{% static '' %}" alt=""></a>
                 </li>
                 <li>
-                    <a href="#"><img src="" alt=""></a>
+                    <a href="#"><img src="{% static '' %}" alt=""></a>
                 </li>
                 <li>
-                    <a href="#"><img src="" alt=""></a>
+                    <a href="#"><img src="{% static '' %}" alt=""></a>
                 </li>
                 <li>
-                    <a href="#"><img src="" alt=""></a>
+                    <a href="#"><img src="{% static '' %}" alt=""></a>
                 </li>
                 <li>
-                    <a href="#"><img src="" alt=""></a>
+                    <a href="#"><img src="{% static '' %}" alt=""></a>
                 </li>
                 <li>
-                    <a href="#"><img src="" alt=""></a>
+                    <a href="#"><img src="{% static '' %}" alt=""></a>
                 </li>
             </ul>
         </div>
@@ -825,7 +839,7 @@
                 <div class="sumbox">
                     <span>数量：</span>
                     <i class="num-down num-down-no"></i>
-                    <input class="num-text" type="text" value="1"/>
+                    <input class="num-text" type="text" value="1">
                     <i class="num-up"></i>
                 </div>
                 <div class="buttonbox">
@@ -835,8 +849,8 @@
 
                         </div>
                     </div>
-                    <a href="cart.html"><input class="bred" type="button" value="立即购买"/></a>
-                    <input class="borg" type="button" value="加入购物车"/>
+                    <a href="cart.html"><input class="bred" type="button" value="立即购买"></a>
+                    <input class="borg" type="button" value="加入购物车">
                 </div>
             </form>
         </div>
@@ -920,7 +934,7 @@
         </ul>
     </div>
     <div class="foot-copyright">
-        <span>Copyright &copy; 2007-2016 Paixie.net All Rights Reserved 闽B2-20110084</span>
+        <span>Copyright © 2007-2016 Paixie.net All Rights Reserved 闽B2-20110084</span>
     </div>
     <div class="foot-linktext">
         <i class="dolinkshow" id="dolinkshow"></i>
@@ -958,5 +972,7 @@
         <a href="#" class="report"></a>
     </div>
 </div>
+
+
 </body>
 </html>

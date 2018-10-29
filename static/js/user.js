@@ -56,6 +56,24 @@ $(function(){
     $registerbtn.click(function(){
         var $regusername = $reguserinput.val();
         var $regpassword = $regpwdinput.val();
+
+        //测试Ajax
+
+
+
+        // $.post(/regist/,{
+        //     'csrfmiddlewaretoken': csrf,
+        //     'username':$regusername
+        //     'password':$regpassword
+        // })
+
+
+
+
+
+
+
+
         console.log($regusername)
         alert($regusername)
         alert($regpassword)
@@ -68,11 +86,12 @@ $(function(){
             alert("注册成功!");
             // window.location.href = "login.html";
             window.location.href = '';
-
-
-
         }
     });
+
+
+
+
 
     var $loginbtn = $(".orange-button");
     var $loginuserinput = $(".login-area .login-text:eq(0)");
@@ -103,6 +122,9 @@ $(function(){
             window.location.href = "mainWeb.html";
         }
     });
+
+
+
 
     //微信登录二维码
     var $way = $(".way");

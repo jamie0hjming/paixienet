@@ -1,22 +1,31 @@
+{% load  static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>拍鞋网</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/base.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/cart.css">
-    <script src="../static/js/jquery-1.12.3.js"></script>
-    <script src="../static/js/jquery.cookie.js"></script>
-    <script src="../static/js/cart.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+    <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
+
+
+
+
 </head>
+
 <body>
+
+
 <div class="head" id="head">
 <div class="head-topline">
     <div class="head-topLogin">
         <div class="head_topLoginright">
                     <span class="login-cart">
-                        <a href="#"><i></i>购物车<b>0</b></a>
+                        <a href="{% url 'paixienet:cart' %}"><i></i>购物车<b>0</b></a>
                         <div class="cartshow">
                             <b class="cartboth">您还没有购买任何商品，快去挑选把！</b>
                         </div>
@@ -60,8 +69,8 @@
             <a href="#" class="mbicon"></a>
             <p class="loginOut">
                 <span>您好，欢迎来拍鞋网！</span>
-                <a href="login.html" class="dologinBtn"></a>
-                <span><a href="register.html">免费注册</a></span>
+                <a href="{% url 'paixienet:login' %}" class="dologinBtn"></a> {# 登录 #}
+                <span><a href="{% url 'paixienet:register' %}">免费注册</a></span>
             </p>
         </div>
     </div>
@@ -76,8 +85,8 @@
     <div class="head-sobox">
         <form action="#" id="head-sobox">
             <div class="formp">
-                <input id="head_sotext" class="hea-sotext" type="text"/>
-                <input id="head_sobtn" class="head-sobtn yh" type="button" value="搜 索" />
+                <input id="head_sotext" class="hea-sotext" type="text">
+                <input id="head_sobtn" class="head-sobtn yh" type="button" value="搜 索">
             </div>
         </form>
         <div class="so-text">
@@ -113,7 +122,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox1.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox1.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -191,7 +200,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox2.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox2.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -269,7 +278,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox3.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox3.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -347,7 +356,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox4.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox4.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -421,11 +430,11 @@
         <a href="#">休闲鞋</a>
         <a href="#">篮球鞋</a>
     </p>
-    <div class="nav-boxshow" >
+    <div class="nav-boxshow">
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox5.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox5.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -503,7 +512,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox6.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox6.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -581,7 +590,7 @@
         <div class="nav-right">
             <a href="javascript:;" class="closebtn"></a>
                                         <span class="nav-img">
-                                            <a href="#"><img src="images/navbox7.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'images/navbox7.jpg' %}" alt=""></a>
                                         </span>
         </div>
         <div class="nav-left">
@@ -656,7 +665,7 @@
 </div>
 <div class="head-rightimg">
     <a href="#">
-        <img src="images/app.jpg" alt="" />
+        <img src="{% static 'images/app.jpg' %}" alt="">
     </a>
 </div>
 </div>
@@ -668,19 +677,19 @@
         <span><i></i>商品价格请以订单提交时为准</span>
     </div>
     <table class="cart-box-current">
-        <tr>
-            <th class="box-chk"><input type="checkbox" class="js-select-all" />全选</th>
+        <tbody><tr>
+            <th class="box-chk"><input type="checkbox" class="js-select-all">全选</th>
             <th class="box-name">商品名称</th>
             <th class="box-price">拍鞋价(元)</th>
             <th class="box-num">数量</th>
             <th class="box-allprice">小计(元)</th>
             <th class="box-operate">操作</th>
         </tr>
-        
-    </table>
+
+    </tbody></table>
     <div class="area-go-pay">
         <label class="xcartall">
-            <input name="" value="" type="checkbox" class="js-select-all" >
+            <input name="" value="" type="checkbox" class="js-select-all">
             <a class="js-select-all  all">全选</a>
         </label>
         <a id="del-chk" href="javascript:;">删除选中商品</a>
@@ -688,10 +697,10 @@
         <a id="clear-cart" href="javascript:;">清空购物车</a>
       合计（不含运费）：
             <strong class="orange yh money">0.00</strong>
-        <a class="go-pay" id="js-go-pay" >去结算></a>
+        <a class="go-pay" id="js-go-pay">去结算&gt;</a>
     </div>
     </div>
-</div>
+
 <div id="foot">
     <div class="foot-fiveicon">
         <ul class="foot-fiveicon-ul">
@@ -767,7 +776,7 @@
         </ul>
     </div>
     <div class="foot-copyright">
-        <span>Copyright &copy; 2007-2016 Paixie.net All Rights Reserved 闽B2-20110084</span>
+        <span>Copyright © 2007-2016 Paixie.net All Rights Reserved 闽B2-20110084</span>
     </div>
     <div class="foot-linktext">
         <i class="dolinkshow" id="dolinkshow"></i>
@@ -805,5 +814,8 @@
         <a href="#" class="report"></a>
     </div>
 </div>
+
+
+
 </body>
 </html>

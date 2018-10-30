@@ -342,6 +342,8 @@ a {
     margin-top: 7px;
 }
 
+
+
 /*退出按钮的用户CSS*/
 .head_top_left_a5{
 	display: block;
@@ -700,7 +702,13 @@ a {
 }
 
 
+/*登录后的用户图像CSS*/
 
+b
+{
+	color: red;
+
+}
 
 
 

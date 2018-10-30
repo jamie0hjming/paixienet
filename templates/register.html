@@ -79,7 +79,7 @@
                 </div>
 {#                <a class="blue-button" >立即注册#}
 {#                </a>#}
-                    <input type="submit" value="立即注册" id="input">
+                    <input type="submit" value="立即注册" id="input" class="blue-button" disabled="">
 
                     </form>
             </div>
@@ -87,7 +87,7 @@
                 我已有拍鞋网账户
                 <br>
                 现在就
-                <a href="login.html">立即登录</a>
+                <a href="{% url 'paixienet:login' %}">立即登录</a>
             </div>
         </div>
     </div>

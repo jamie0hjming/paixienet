@@ -90,7 +90,8 @@
 
 
                             {% if username %}
-                                <span class="head_top_left_s1">您好，<b>{{ username }}</b>&nbsp;&nbsp;欢迎来到拍鞋网！</span>
+                                {# 登录用户后，显示用户名，以及点击用户名显示个人信息 #}
+                                <span class="head_top_left_s1">您好，<b>{{ username }}</b><a href="/uploadimg/"><img style="height: 15px ;width: 15px" src="{% static img_path %}" name = 'load_head'></a>&nbsp;&nbsp;欢迎来到拍鞋网！</span>
                                 <a class="head_top_left_s1" href="{% url 'paixienet:logout' %}">退出</a>
 
 {#                                <a href="#" class="head_top_left_a4">用户名：<b>{{ username }}</b></a>#}

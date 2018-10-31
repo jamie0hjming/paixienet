@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
     <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
     <script src="{% static 'js/jquery.cookie.js' %}"></script>
-    <script src="{% static 'js/user.js' %}"></script>
+{#    <script src="{% static 'js/user.js' %}"></script>#}
 
 
 </head>
@@ -53,7 +53,7 @@
                 <div>
                     <lable>确认密码：</lable>
                     <div class="base-text">
-                        <input class="login-text" type="password" />
+                        <input class="login-text" type="password" name="passwordverify" />
                     </div>
                     <span>
                         请再次输入密码
@@ -79,7 +79,7 @@
                 </div>
 {#                <a class="blue-button" >立即注册#}
 {#                </a>#}
-                    <input type="submit" value="立即注册" id="input" class="blue-button" disabled="">
+                    <input type="submit" value="立即注册" id="input" class="blue-button">
 
                     </form>
             </div>

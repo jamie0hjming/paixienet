@@ -51,19 +51,25 @@ def register(request):
     elif request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        # print(username,password)
-
-        try:
-            user = User()
-            user.name = username
-            user.password = generate_password(password)
-            user.token = uuid.uuid3(uuid.uuid4(),'username')
-            user.save()
-            response = redirect('paixienet:mainweb')
-            response.set_cookie('token',user.token)
-            return response
-        except Exception as e :
+        passwordverify = request.POST.get('passwordverify')
+        if passwordverify == password:
+            try:
+                user = User()
+                user.name = username
+                user.password = generate_password(password)
+                user.token = uuid.uuid3(uuid.uuid4(),'username')
+                user.save()
+                response = redirect('paixienet:mainweb')
+                response.set_cookie('token',user.token)
+                return response
+            except Exception as e :
+                return HttpResponse('注册失败')
+        else:
             return HttpResponse('注册失败')
+
+
+
+
 
 
 def cart(request):
@@ -119,3 +125,5 @@ def uploadimg(request):
 def head_path(img_name):
     file_path = os.path.join('loadhead/',img_name)
     return file_path
+
+

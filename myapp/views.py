@@ -1,4 +1,5 @@
 import hashlib
+import io
 import os
 import random
 import uuid
@@ -11,7 +12,7 @@ from django.shortcuts import render, redirect
 from myapp.models import User
 from paixienet import settings
 
-
+# 首页
 def mainweb(request):
     token = request.COOKIES.get('token')
     users =User.objects.filter(token = token)
@@ -22,6 +23,7 @@ def mainweb(request):
     else:
         return render(request,'mainWeb.html')
 
+# 登陆
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
@@ -45,6 +47,8 @@ def generate_password(password):
     sha.update(password.encode('utf-8'))
     return sha.hexdigest()
 
+#注册
+
 def register(request):
     if request.method == "GET":
         return render(request,'register.html')
@@ -52,7 +56,16 @@ def register(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         passwordverify = request.POST.get('passwordverify')
-        if passwordverify == password:
+        verifycode = request.POST.get('verifycode')
+        verifycode = verifycode.upper()
+
+        print(print("verifycode:{}".format(verifycode)))
+        print(print("rand_str:{}".format(rand_str)))
+        print(verifycode== rand_str)
+        if verifycode== rand_str:
+           print("QQQQQQQQ")
+
+        if (passwordverify == password) and password and username and (verifycode== rand_str):
             try:
                 user = User()
                 user.name = username
@@ -71,13 +84,15 @@ def register(request):
 
 
 
-
+# 商城
 def cart(request):
     return render(request,'cart.html')
 
-
+# 物品详情
 def goodsinfo(request):
-
+    print('调用goods')
+    id1 = request.GET.get('id')
+    print(id1)
 
     return render(request,'goodsinfo.html')
 
@@ -88,6 +103,7 @@ def logout(request):
     return response
 
 
+# 更新图片
 def uploadimg(request):
     if request.method == 'GET':
         return render(request,'uploadimg.html')
@@ -125,5 +141,71 @@ def uploadimg(request):
 def head_path(img_name):
     file_path = os.path.join('loadhead/',img_name)
     return file_path
+
+
+
+
+from PIL import Image,ImageDraw,ImageFont
+def verifycode(request):
+    print("AAAAAAAAAAAAA")
+    # 创建图片
+    width = 150
+    height = 50
+    r = random.randrange(0,256)
+    g = random.randrange(0,256)
+    b = random.randrange(0,256)
+    image = Image.new('RGB', (width, height), (r,g,b))
+
+
+    # 随机数
+    str = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
+    global rand_str
+    rand_str = ''
+
+    for i in range(0,4):
+        temp = random.randrange(0,len(str))
+        rand_str += str[temp]
+
+
+    # 保存随机数，后续为验证
+    # session
+
+
+    # 创建画笔
+    draw = ImageDraw.Draw(image)
+
+    # 添加噪点
+    for i in range(0,300):
+        xy = (random.randrange(0,width), random.randrange(0,height))
+        fill = (random.randrange(0,256),random.randrange(0,256),random.randrange(0,256))
+        draw.point(xy, fill=fill)
+
+    # 导入字体
+    # font = ImageFont.truetype('static/fonts/Laksaman.ttf', 40)
+    font = ImageFont.truetype('static/fonts/Laksaman.ttf', 25)
+
+    # 字体颜色
+    fontcolor1 = (255, random.randrange(0,256), random.randrange(0,256))
+    fontcolor2 = (255, random.randrange(0, 256), random.randrange(0, 256))
+    fontcolor3 = (255, random.randrange(0, 256), random.randrange(0, 256))
+    fontcolor4 = (255, random.randrange(0, 256), random.randrange(0, 256))
+
+
+    # 绘制操作
+    draw.text((5,3), rand_str[0], fill=fontcolor1,font=font)
+    draw.text((25, 3), rand_str[1], fill=fontcolor2, font=font)
+    draw.text((45, 3), rand_str[2], fill=fontcolor3, font=font)
+    draw.text((65, 3), rand_str[3], fill=fontcolor4, font=font)
+
+    # 释放
+    del draw
+    rand_str = rand_str.upper()
+    print("rand_str:{}".format(rand_str))
+    # 文件操作
+    buff = io.BytesIO()
+    image.save(buff, 'png') # 保存在内存中
+
+    return HttpResponse(buff.getvalue(), 'image/png')
+
 
 

@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
     <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
     <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script src="{% static 'js/verifycode.js' %}"></script>
 {#    <script src="{% static 'js/user.js' %}"></script>#}
 
 
@@ -62,9 +63,9 @@
                 <div class="codearea">
                     <lable>验证码：</lable>
                     <div class="base-text base-text135">
-                        <input class="login-text" type="text" placeholder="验证码"/>
+                        <input class="login-text" type="text" placeholder="验证码" name = 'verifycode'/>
                     </div>
-                    <p>3324</p>
+                    <p><img src="{% url 'paixienet:verifycode' %}" id = 'verifycode'  ></p>
 
                     <span>
                         <div></div>

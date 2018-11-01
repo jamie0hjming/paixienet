@@ -2,6 +2,7 @@
 $(function(){
 //	获取第一屏中3 ， 4的数据
 		$.get("../static/json/mainWeb_J1.json",function(data){
+
 			
 			for (var i=0; i<data.length; i++) {
 				var arr = data[i]
@@ -10,7 +11,7 @@ $(function(){
 					var obj = arr[j]; 
 					var img = obj.img; //img
 					var id = obj.id; //id
-					$(".aaa").eq(i).append("<a href='goodsinfo.html'><img src="+ img +"/></a>");
+					$(".aaa").eq(i).append("<a href='{% url 'paixienet:goodsinfo' %}'><img src="+ img +"/></a>");
 				}
 			}
 //		调整第一屏中 3  获取的数据的位置			
@@ -90,7 +91,7 @@ $(function(){
 			
 //爱团购  JSON获取数据  定时器
 		$.get("../static/json/mainWeb_J2.json",function(data){
-			
+
 			for (var i=0; i<data.length; i++) {
 				var arr = data[i]
 				for (var j=0; j<arr.length; j++) {
@@ -99,14 +100,14 @@ $(function(){
 					var id = obj.id; //id
 					var old = obj.old_price;
 					var new1 = obj.new_price;
-					$(".bbb").eq(i).append("<a href='goodsinfo.html'><img src="+ img +"/></a>");
+					console.log(id)
+					$(".bbb").eq(i).append("<a href='/goodsinfo/'><img src="+ img +"/></a>");
 					$(".bbb").eq(i).append("<div><span class='ss1'>倒计时</span><span class='d'></span>天<span class='h'></span>:<span class='m'></span>:<span class='s'></span><b></b></div>")
 					$(".bbb").eq(i).append("<p><del>"+old+"</del>|<i>"+new1+"</i></p>");
 				}
 			}
 			
-			var oDay = $(".d");
-			var oHours = $(".h");
+			var oDay = $(".d");			var oHours = $(".h");
 			var oMinutes = $(".m");
 			var oSeconds = $(".s");
 			
@@ -127,7 +128,7 @@ $(function(){
 				oMinutes.html(minutes)
 				oSeconds.html(seconds)
 			},1000);
-			
+                // 爱团购的两个块的显示和隐藏
 				$(".body_love_nav h3 a").eq(0).mouseenter(function(){
 					$(".body_love_nav h3 i").stop().animate({left:"0px"},500);
 					$("#love1").show();
@@ -156,7 +157,7 @@ $(function(){
 					var img = "<img src="+ img +"/>";
 					var span ="<span>"+sc+"</span>";
 					var b ="<b>"+price+"</b>";
-					var a = "<a href='goodsinfo.html?id="+ id +"'>"+img + span +b +"</a>";
+					var a = "<a href='templates/goodsinfo.html?id="+ id +"'>"+img + span +b +"</a>";
 					var li = "<li>"+a+"</li>"
 //					$(".ccc").eq(i).append("<li><a href='goodsinfo.html?id='"+ id +"><img src="+ img +"/><span>"+sc+"</span><b>"+price+"</b></a></li>");
 					$(".ccc").eq(i).append(li)

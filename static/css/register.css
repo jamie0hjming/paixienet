@@ -14,7 +14,9 @@ a {cursor: pointer; text-decoration: none; color: #fff;}
 .register-area .base-text135{width: 135px;}
 .register-area .base-text135 input{width: 102px;}
 /*.register-area .codearea{display: none;}*/
-.register-area .codearea p{font-size: 14px; line-height: 36px; position: relative; display: inline-block; width: 128px; margin: 5px 5px 5px 0; padding: 0 10px; text-align: center; vertical-align: middle; color: #333; border: 1px solid #333; border-radius: 2px;}
+.register-area .codearea p{font-size: 14px; line-height: 36px; position: relative; display: inline-block; width: 128px; margin: 5px 5px 5px 0; padding: 0px; text-align: center; vertical-align: middle; color: #333;  border-radius: 2px;}
+.register-area .codearea p img{width: 100%;height: 100%;border-radius: 5px;}
+
 .register-area .agreement lable{font-size: 12px; line-height: 22px; width: auto; margin-left: 85px; text-align: left; color: #878787;}
 .register-area .agreement input{display: inline-block; vertical-align: middle;}
 .register-area .blue-button{font-size: 16px; line-height: 40px; display: inline-block; width: 272px; height: 40px; margin: 14px 0 0 85px; padding: 0 10px; text-align: center; vertical-align: middle; color: #fff; border-radius: 2px; background-color: #0487df;}

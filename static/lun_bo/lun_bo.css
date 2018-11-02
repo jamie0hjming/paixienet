@@ -1,0 +1,20 @@
+
+ .swiper-container{
+    width: 100%;
+    height: 100%;
+
+}
+ .swiper-wrapper{
+    width: 100%;
+    height: 100%;
+
+}
+
+，swiper-container img{
+    width: 100%;
+    height: 100%;
+
+}
+.swiper-container .swiper-pagination{
+    bottom: 0px;
+}

@@ -198,7 +198,7 @@
 	width: 780px;
 	height: 380px;
 	position: relative;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 #list {

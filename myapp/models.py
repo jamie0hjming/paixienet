@@ -14,3 +14,6 @@ class Goodsinfo(models.Model):
     old_price = models.CharField(max_length=10)
     new_price = models.CharField(max_length=10)
 
+class Lun_bo(models.Model):
+    img = models.CharField(max_length=100)
+    track_id = models.CharField(max_length=20)

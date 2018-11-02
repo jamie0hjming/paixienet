@@ -9,19 +9,22 @@ from django.shortcuts import render, redirect
 
 
 # Create your views here.
-from myapp.models import User
+from myapp.models import User, Lun_bo
 from paixienet import settings
 
 # 首页
 def mainweb(request):
     token = request.COOKIES.get('token')
     users =User.objects.filter(token = token)
+    lun_bo_imgs = Lun_bo.objects.all()
     if users.exists():
         user = users.first()
         img_path = head_path(user.imgRoot)
-        return render(request,'mainWeb.html',context={'username':user.name,"img_path":img_path})
+        print(lun_bo_imgs[1].img)
+        return render(request,'mainWeb.html',context={'username':user.name,"img_path":img_path,'lun_bo_imgs':lun_bo_imgs})
     else:
-        return render(request,'mainWeb.html')
+        print(lun_bo_imgs[0].img)
+        return render(request,'mainWeb.html',context={'lun_bo_imgs':lun_bo_imgs})
 
 # 登陆
 def login(request):

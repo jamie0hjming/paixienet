@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 
 
 # Create your views here.
-from myapp.models import User, Lun_bo
+from myapp.models import User, Lun_bo, Sport_f1_shoes
 from paixienet import settings
 
 # 首页
@@ -17,14 +17,33 @@ def mainweb(request):
     token = request.COOKIES.get('token')
     users =User.objects.filter(token = token)
     lun_bo_imgs = Lun_bo.objects.all()
+    sport_f1_shoes = Sport_f1_shoes.objects.all()
+    sport_f1_shoes1 = sport_f1_shoes[0:10]
+    sport_f1_shoes2 = sport_f1_shoes[10:20]
+    sport_f1_shoes3 = sport_f1_shoes[20:30]
+    for shoes in sport_f1_shoes2:
+        print(shoes.img)
     if users.exists():
         user = users.first()
         img_path = head_path(user.imgRoot)
-        print(lun_bo_imgs[1].img)
-        return render(request,'mainWeb.html',context={'username':user.name,"img_path":img_path,'lun_bo_imgs':lun_bo_imgs})
+
+        data = {
+            'username': user.name,
+            "img_path": img_path,
+            'lun_bo_imgs': lun_bo_imgs,
+            'sport_f1_shoes1':sport_f1_shoes1,
+            'sport_f1_shoes2': sport_f1_shoes2,
+            'sport_f1_shoes3': sport_f1_shoes3,
+        }
+        return render(request,'mainWeb.html',context=data)
     else:
-        print(lun_bo_imgs[0].img)
-        return render(request,'mainWeb.html',context={'lun_bo_imgs':lun_bo_imgs})
+        data = {
+            'lun_bo_imgs': lun_bo_imgs,
+            'sport_f1_shoes1':sport_f1_shoes1,
+            'sport_f1_shoes2': sport_f1_shoes2,
+            'sport_f1_shoes3': sport_f1_shoes3,
+        }
+        return render(request,'mainWeb.html',context=data)
 
 # 登陆
 def login(request):
@@ -92,12 +111,15 @@ def cart(request):
     return render(request,'cart.html')
 
 # 物品详情
-def goodsinfo(request):
-    print('调用goods')
-    id1 = request.GET.get('id')
-    print(id1)
+def goodsinfo(request,goods_id):
 
-    return render(request,'goodsinfo.html')
+    sport_f1_shoes = Sport_f1_shoes.objects.get(id=goods_id)
+    data = {
+        'sport_f1_shoes':sport_f1_shoes,
+    }
+
+    return render(request,'goodsinfo.html',context=data)
+
 
 # 退出
 def logout(request):
@@ -211,4 +233,7 @@ def verifycode(request):
     return HttpResponse(buff.getvalue(), 'image/png')
 
 
+def test(request):
+    lun_bo_imgs = Lun_bo.objects.all()
 
+    return render(request,'test.html',context={'luo_bo_imgs':lun_bo_imgs})

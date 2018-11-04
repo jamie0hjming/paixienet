@@ -26,9 +26,10 @@
 .goodsimg{position: relative; z-index: 30; float: left; width: 420px;}
 .bigimg{position: relative; width: 418px; height: 418px; margin-bottom: 14px; border: 1px solid #f2f2f2;}
 #smallArea{position: absolute;width: 150px;height: 150px;border: 1px solid;}
-.bbigimg{width: 1200px;height: 1200px;background: url() no-repeat;background-size: 1200px 1200px;position: absolute;left: 420px;top: 0;overflow: hidden;}
+.bbigimg{width: 1200px;height: 1200px;background-size: 1200px 1200px;position: absolute;left: 420px;top: 0;overflow: hidden;display: block;border: 1px solid red}
 #bigArea{width: 600px;height: 600px; overflow: hidden;position: absolute;left: 420px;top: 0;display: none;}
-.bigimg img{max-width: 418px; max-height: 418px;}
+.bigimg img{max-width: 418px; max-height: 418px;display: none}
+.bigimg .fisrt_img{display: block}
 .goodsimg .previmg,
 .goodsimg .nextimg{float: left; width: 10px; height: 44px; margin: 0; margin-top: 13px; cursor: pointer;}
 .goodsimg .previmg{margin-right: 13px; background-position: -466px -95px;}

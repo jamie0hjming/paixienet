@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^register/$',views.register,name='register'),
     url(r'^cart/$',views.cart,name='cart'),
     url(r'^uploadimg/$',views.uploadimg,name='uploadimg'),
-    url(r'^goodsinfo/$',views.goodsinfo,name='goodsinfo'),
+    url(r'^goodsinfo/(\d+)/$',views.goodsinfo,name='goodsinfo'),
     url(r'^verifycode/\d+/$',views.verifycode,name='verifycode'),
+
+    url(r'^test/$',views.test,name='test')
 ]

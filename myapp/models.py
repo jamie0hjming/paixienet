@@ -17,3 +17,27 @@ class Goodsinfo(models.Model):
 class Lun_bo(models.Model):
     img = models.CharField(max_length=100)
     track_id = models.CharField(max_length=20)
+
+class Sport_f1_shoes(models.Model):
+    img = models.CharField(max_length=100)
+    sc = models.CharField(max_length=255)
+    price = models.IntegerField()
+    img1 = models.CharField(max_length=100)
+    img2 = models.CharField(max_length=100)
+    img3 = models.CharField(max_length=100)
+    img4 = models.CharField(max_length=100)
+    img5 = models.CharField(max_length=100)
+
+    s1 = models.CharField(max_length=100)
+    s2 = models.CharField(max_length=100)
+    s3 = models.CharField(max_length=100)
+    s4 = models.CharField(max_length=100)
+    s5 = models.CharField(max_length=100)
+    c1 = models.CharField(max_length=100)
+
+    size = models.CharField(max_length=6)
+    num = models.IntegerField()
+    id_num = models.IntegerField()
+
+
+

@@ -13,25 +13,23 @@
     <script src="{% static 'js/cart.js' %}"></script>
 
 
-
-
 </head>
 
 <body>
 
 
 <div class="head" id="head">
-<div class="head-topline">
-    <div class="head-topLogin">
-        <div class="head_topLoginright">
+    <div class="head-topline">
+        <div class="head-topLogin">
+            <div class="head_topLoginright">
                     <span class="login-cart">
                         <a href="{% url 'paixienet:cart' %}"><i></i>购物车<b>0</b></a>
                         <div class="cartshow">
                             <b class="cartboth">您还没有购买任何商品，快去挑选把！</b>
                         </div>
                     </span>
-            <span class="login-icon">|</span>
-                    <span class="login-paixie">
+                <span class="login-icon">|</span>
+                <span class="login-paixie">
                         <a href="#">我的拍鞋<i></i></a>
                         <ul>
                             <li>
@@ -42,12 +40,12 @@
                                 <a href="#">我的优惠券</a></li>
                         </ul>
                     </span>
-            <span class="login-icon">|</span>
-            <span class="login-message"><a href="#">消息</a></span>
-            <span class="login-icon">|</span>
-            <span class="login-zone"><a href="#">会员俱乐部</a></span>
-            <span class="login-icon">|</span>
-                    <span class="login-paixie">
+                <span class="login-icon">|</span>
+                <span class="login-message"><a href="#">消息</a></span>
+                <span class="login-icon">|</span>
+                <span class="login-zone"><a href="#">会员俱乐部</a></span>
+                <span class="login-icon">|</span>
+                <span class="login-paixie">
                         <a href="#">网站导航<i></i></a>
                         <ul>
                             <li>
@@ -64,612 +62,624 @@
                             </li>
                         </ul>
                     </span>
-        </div>
-        <div class="head_topLoginleft">
-            <a href="#" class="mbicon"></a>
-            <p class="loginOut">
-                <span>您好，欢迎来拍鞋网！</span>
-                <a href="{% url 'paixienet:login' %}" class="dologinBtn"></a> {# 登录 #}
-                <span><a href="{% url 'paixienet:register' %}">免费注册</a></span>
-            </p>
-        </div>
-    </div>
-</div>
-<div class="head-logo-so">
-    <div class="head-logo">
-        <a href="mainWeb.html"></a>
-    </div>
-    <div class="head-leftgif">
-        <a href="#"></a>
-    </div>
-    <div class="head-sobox">
-        <form action="#" id="head-sobox">
-            <div class="formp">
-                <input id="head_sotext" class="hea-sotext" type="text">
-                <input id="head_sobtn" class="head-sobtn yh" type="button" value="搜 索">
             </div>
-        </form>
-        <div class="so-text">
-            <a href="#">915狂购节</a>
-            <a href="#">跑步鞋</a>
-            <a href="#">男士凉鞋</a>
-            <a href="#">女士凉鞋</a>
-            <a href="#">小白鞋</a>
-            <a href="#">百搭T恤</a>
-            <a href="#">品牌特卖</a>
+            <div class="head_topLoginleft">
+                <a href="#" class="mbicon"></a>
+                <p class="loginOut">
+                    {% if user.name %}
+
+                        {# 登录用户后，显示用户名，以及点击用户名显示个人信息 #}
+                        <span class="head_top_left_s1">您好，<b>{{ user.name }}</b>
+                            <a href="/uploadimg/">
+                            <img style="height: 15px ;width: 15px" src="{% static img_path %}" name='load_head'>
+                        </a>&nbsp;&nbsp;欢迎来到拍鞋网！
+                        </span>
+                        <a class="head_top_left_s1" href="{% url 'paixienet:logout' %}">退出</a>
+                    {% else %}
+                        <span class="head_top_left_s1">您好，欢迎来拍鞋网！</span>
+                        <a href="{% url 'paixienet:login' %}" class="dologinBtn"></a> {# 登录 #}
+                        <a href="{% url 'paixienet:register' %}" target="_blank" class="head_top_left_a3">免费注册</a>
+                    {% endif %}
+                    </span>
+                </p>
+            </div>
         </div>
     </div>
-</div>
-<div class="head-nav">
-<div class="head-menulist">
-<div class="head-menushow" id="head_menushow">
-<i class="hmsicon"></i>
-<span class="hmsicon">全部商品分类</span>
-<div class="bodytopleft-menu">
-<ul class="nav-topbox">
-<li>
+    <div class="head-logo-so">
+        <div class="head-logo">
+            <a href="mainWeb.html"></a>
+        </div>
+        <div class="head-leftgif">
+            <a href="#"></a>
+        </div>
+        <div class="head-sobox">
+            <form action="#" id="head-sobox">
+                <div class="formp">
+                    <input id="head_sotext" class="hea-sotext" type="text">
+                    <input id="head_sobtn" class="head-sobtn yh" type="button" value="搜 索">
+                </div>
+            </form>
+            <div class="so-text">
+                <a href="#">915狂购节</a>
+                <a href="#">跑步鞋</a>
+                <a href="#">男士凉鞋</a>
+                <a href="#">女士凉鞋</a>
+                <a href="#">小白鞋</a>
+                <a href="#">百搭T恤</a>
+                <a href="#">品牌特卖</a>
+            </div>
+        </div>
+    </div>
+    <div class="head-nav">
+        <div class="head-menulist">
+            <div class="head-menushow" id="head_menushow">
+                <i class="hmsicon"></i>
+                <span class="hmsicon">全部商品分类</span>
+                <div class="bodytopleft-menu">
+                    <ul class="nav-topbox">
+                        <li>
                                 <span>
                                     <i class="i-1"></i>
                                     <a href="#">运动馆</a>
                                 </span>
-    <p>
-        <a href="#">板鞋</a>
-        <a href="#">跑步鞋</a>
-        <a href="#">休闲鞋</a>
-        <a href="#">篮球鞋</a>
-    </p>
-    <div class="nav-boxshow">
-        <div class="nav-right">
-            <a href="javascript:;" class="closebtn"></a>
-                                        <span class="nav-img">
+                            <p>
+                                <a href="#">板鞋</a>
+                                <a href="#">跑步鞋</a>
+                                <a href="#">休闲鞋</a>
+                                <a href="#">篮球鞋</a>
+                            </p>
+                            <div class="nav-boxshow">
+                                <div class="nav-right">
+                                    <a href="javascript:;" class="closebtn"></a>
+                                    <span class="nav-img">
                                             <a href="#"><img src="{% static 'images/navbox1.jpg' %}" alt=""></a>
                                         </span>
-        </div>
-        <div class="nav-left">
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
+                                </div>
+                                <div class="nav-left">
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
 
-        </div>
-    </div>
-</li>
-<li>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
                                 <span>
                                     <i class="i-2"></i>
                                     <a href="#">运动馆</a>
                                 </span>
-    <p>
-        <a href="#">板鞋</a>
-        <a href="#">跑步鞋</a>
-        <a href="#">休闲鞋</a>
-        <a href="#">篮球鞋</a>
-    </p>
-    <div class="nav-boxshow">
-        <div class="nav-right">
-            <a href="javascript:;" class="closebtn"></a>
-                                        <span class="nav-img">
+                            <p>
+                                <a href="#">板鞋</a>
+                                <a href="#">跑步鞋</a>
+                                <a href="#">休闲鞋</a>
+                                <a href="#">篮球鞋</a>
+                            </p>
+                            <div class="nav-boxshow">
+                                <div class="nav-right">
+                                    <a href="javascript:;" class="closebtn"></a>
+                                    <span class="nav-img">
                                             <a href="#"><img src="{% static 'images/navbox2.jpg' %}" alt=""></a>
                                         </span>
-        </div>
-        <div class="nav-left">
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
+                                </div>
+                                <div class="nav-left">
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
 
-        </div>
-    </div>
-</li>
-<li>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
                                 <span>
                                     <i class="i-3"></i>
                                     <a href="#">运动馆</a>
                                 </span>
-    <p>
-        <a href="#">板鞋</a>
-        <a href="#">跑步鞋</a>
-        <a href="#">休闲鞋</a>
-        <a href="#">篮球鞋</a>
-    </p>
-    <div class="nav-boxshow">
-        <div class="nav-right">
-            <a href="javascript:;" class="closebtn"></a>
-                                        <span class="nav-img">
+                            <p>
+                                <a href="#">板鞋</a>
+                                <a href="#">跑步鞋</a>
+                                <a href="#">休闲鞋</a>
+                                <a href="#">篮球鞋</a>
+                            </p>
+                            <div class="nav-boxshow">
+                                <div class="nav-right">
+                                    <a href="javascript:;" class="closebtn"></a>
+                                    <span class="nav-img">
                                             <a href="#"><img src="{% static 'images/navbox3.jpg' %}" alt=""></a>
                                         </span>
-        </div>
-        <div class="nav-left">
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
+                                </div>
+                                <div class="nav-left">
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
 
-        </div>
-    </div>
-</li>
-<li>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
                                 <span>
                                     <i class="i-4"></i>
                                     <a href="#">运动馆</a>
                                 </span>
-    <p>
-        <a href="#">板鞋</a>
-        <a href="#">跑步鞋</a>
-        <a href="#">休闲鞋</a>
-        <a href="#">篮球鞋</a>
-    </p>
-    <div class="nav-boxshow">
-        <div class="nav-right">
-            <a href="javascript:;" class="closebtn"></a>
-                                        <span class="nav-img">
+                            <p>
+                                <a href="#">板鞋</a>
+                                <a href="#">跑步鞋</a>
+                                <a href="#">休闲鞋</a>
+                                <a href="#">篮球鞋</a>
+                            </p>
+                            <div class="nav-boxshow">
+                                <div class="nav-right">
+                                    <a href="javascript:;" class="closebtn"></a>
+                                    <span class="nav-img">
                                             <a href="#"><img src="{% static 'images/navbox4.jpg' %}" alt=""></a>
                                         </span>
-        </div>
-        <div class="nav-left">
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
+                                </div>
+                                <div class="nav-left">
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
 
-        </div>
-    </div>
-</li>
-<li>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
                                 <span>
                                     <i class="i-5"></i>
                                     <a href="#">运动馆</a>
                                 </span>
-    <p>
-        <a href="#">板鞋</a>
-        <a href="#">跑步鞋</a>
-        <a href="#">休闲鞋</a>
-        <a href="#">篮球鞋</a>
-    </p>
-    <div class="nav-boxshow">
-        <div class="nav-right">
-            <a href="javascript:;" class="closebtn"></a>
-                                        <span class="nav-img">
+                            <p>
+                                <a href="#">板鞋</a>
+                                <a href="#">跑步鞋</a>
+                                <a href="#">休闲鞋</a>
+                                <a href="#">篮球鞋</a>
+                            </p>
+                            <div class="nav-boxshow">
+                                <div class="nav-right">
+                                    <a href="javascript:;" class="closebtn"></a>
+                                    <span class="nav-img">
                                             <a href="#"><img src="{% static 'images/navbox5.jpg' %}" alt=""></a>
                                         </span>
-        </div>
-        <div class="nav-left">
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
+                                </div>
+                                <div class="nav-left">
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
 
-        </div>
-    </div>
-</li>
-<li>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
                                 <span>
                                     <i class="i-6"></i>
                                     <a href="#">运动馆</a>
                                 </span>
-    <p>
-        <a href="#">板鞋</a>
-        <a href="#">跑步鞋</a>
-        <a href="#">休闲鞋</a>
-        <a href="#">篮球鞋</a>
-    </p>
-    <div class="nav-boxshow" style="top: 144px;">
-        <div class="nav-right">
-            <a href="javascript:;" class="closebtn"></a>
-                                        <span class="nav-img">
+                            <p>
+                                <a href="#">板鞋</a>
+                                <a href="#">跑步鞋</a>
+                                <a href="#">休闲鞋</a>
+                                <a href="#">篮球鞋</a>
+                            </p>
+                            <div class="nav-boxshow" style="top: 144px;">
+                                <div class="nav-right">
+                                    <a href="javascript:;" class="closebtn"></a>
+                                    <span class="nav-img">
                                             <a href="#"><img src="{% static 'images/navbox6.jpg' %}" alt=""></a>
                                         </span>
-        </div>
-        <div class="nav-left">
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
+                                </div>
+                                <div class="nav-left">
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
 
-        </div>
-    </div>
-</li>
-<li>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
                                 <span>
                                     <i class="i-7"></i>
                                     <a href="#">运动馆</a>
                                 </span>
-    <p>
-        <a href="#">板鞋</a>
-        <a href="#">跑步鞋</a>
-        <a href="#">休闲鞋</a>
-        <a href="#">篮球鞋</a>
-    </p>
-    <div class="nav-boxshow" style="top: 144px;">
-        <div class="nav-right">
-            <a href="javascript:;" class="closebtn"></a>
-                                        <span class="nav-img">
+                            <p>
+                                <a href="#">板鞋</a>
+                                <a href="#">跑步鞋</a>
+                                <a href="#">休闲鞋</a>
+                                <a href="#">篮球鞋</a>
+                            </p>
+                            <div class="nav-boxshow" style="top: 144px;">
+                                <div class="nav-right">
+                                    <a href="javascript:;" class="closebtn"></a>
+                                    <span class="nav-img">
                                             <a href="#"><img src="{% static 'images/navbox7.jpg' %}" alt=""></a>
                                         </span>
-        </div>
-        <div class="nav-left">
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
-            <h3>运动鞋</h3>
-            <p>
-                <a href="#">跑步鞋</a>
-                <a href="#">板鞋</a>
-                <a href="#">篮球鞋</a>
-                <a href="#">运动休闲鞋</a>
-                <a href="#">综训鞋</a>
-                <a href="#">帆布鞋</a>
-                <a href="#">足球鞋</a>
-                <a href="#">复古鞋</a>
-            </p>
+                                </div>
+                                <div class="nav-left">
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
+                                    <h3>运动鞋</h3>
+                                    <p>
+                                        <a href="#">跑步鞋</a>
+                                        <a href="#">板鞋</a>
+                                        <a href="#">篮球鞋</a>
+                                        <a href="#">运动休闲鞋</a>
+                                        <a href="#">综训鞋</a>
+                                        <a href="#">帆布鞋</a>
+                                        <a href="#">足球鞋</a>
+                                        <a href="#">复古鞋</a>
+                                    </p>
 
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="head-menulide">
+                <a href="{% url 'paixienet:mainweb' %}">首页</a>
+                <a href="#">爱团购</a>
+                <a href="#">闪购</a>
+                <a href="#">今日特价</a>
+            </div>
+            <div class="head-rightimg">
+                <a href="#">
+                    <img src="{% static 'images/app.jpg' %}" alt="">
+                </a>
+            </div>
         </div>
     </div>
-</li>
-</ul>
-
-</div>
-</div>
-<div class="head-menulide">
-    <a href="index.html">首页</a>
-    <a href="#">爱团购</a>
-    <a href="#">闪购</a>
-    <a href="#">今日特价</a>
-</div>
-<div class="head-rightimg">
-    <a href="#">
-        <img src="{% static 'images/app.jpg' %}" alt="">
-    </a>
-</div>
-</div>
-</div>
 </div>
 <div class="cart-bodys">
     <div class="cart-title">
@@ -677,7 +687,7 @@
         <span><i></i>商品价格请以订单提交时为准</span>
     </div>
     <table class="cart-box-current">
-        <tbody><tr>
+        <tr>
             <th class="box-chk"><input type="checkbox" class="js-select-all">全选</th>
             <th class="box-name">商品名称</th>
             <th class="box-price">拍鞋价(元)</th>
@@ -686,7 +696,40 @@
             <th class="box-operate">操作</th>
         </tr>
 
-    </tbody></table>
+        {% for cart in carts %}
+            <tr class="ttr">
+                <td>
+                    <input type='checkbox' checked='checked' class="tr2-input">
+                    <img src="{% static cart.shoes.img %}" alt="">
+
+                </td>
+                <td class="box-name">
+                    <ul>
+                        <li>{{ cart.shoes.sc }}</li>
+                        <li>{{ cart.shoes.size }}</li>
+                        <li>颜色：黑红</li>
+
+                    </ul>
+                </td>
+                <td class="box-price" >￥{{ cart.shoes.price }}</td>
+                <td class="box-num">
+                    <span class="glyphicon glyphicon-minus num-minus" shoes_id="{{ cart.shoes.id }}"></span>
+{#                    <a href="" class="num-minus" shoes_id='{{ cart.shoes.id }}'></a>#}
+                    <input type= 'text' class='num-text' value='{{ cart.num }}'>
+{#                    <a href="" class="num-add" shoes_id="{{ cart.shoes.id }}"></a>#}
+                    <span class="glyphicon glyphicon-plus num-add" shoes_id="{{ cart.shoes.id }}"></span>
+                </td>
+                <td class="box-allprice">{{ cart.num }}*{{ cart.shoes.price }}</td>
+                <td class="box-operate"><a href="">删除</a>
+                </td>
+
+
+            </tr>
+
+        {% endfor %}
+
+
+    </table>
     <div class="area-go-pay">
         <label class="xcartall">
             <input name="" value="" type="checkbox" class="js-select-all">
@@ -695,11 +738,11 @@
         <a id="del-chk" href="javascript:;">删除选中商品</a>
         <a href="mainWeb.html">继续购物</a>
         <a id="clear-cart" href="javascript:;">清空购物车</a>
-      合计（不含运费）：
-            <strong class="orange yh money">0.00</strong>
+        合计（不含运费）：
+        <strong class="orange yh money">0.00</strong>
         <a class="go-pay" id="js-go-pay">去结算&gt;</a>
     </div>
-    </div>
+</div>
 
 <div id="foot">
     <div class="foot-fiveicon">
@@ -814,7 +857,6 @@
         <a href="#" class="report"></a>
     </div>
 </div>
-
 
 
 </body>

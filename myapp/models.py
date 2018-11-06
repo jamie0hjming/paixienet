@@ -39,5 +39,12 @@ class Sport_f1_shoes(models.Model):
     num = models.IntegerField()
     id_num = models.IntegerField()
 
+class Cart(models.Model):
+    user = models.ForeignKey(User)
+    shoes = models.ForeignKey(Sport_f1_shoes)
+    num = models.IntegerField()
+    is_select = models.BooleanField(default=True)
 
+    class Meta:
+        db_table='cart'
 

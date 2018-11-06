@@ -4,12 +4,12 @@ import os
 import random
 import uuid
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 
 # Create your views here.
-from myapp.models import User, Lun_bo, Sport_f1_shoes
+from myapp.models import User, Lun_bo, Sport_f1_shoes, Cart
 from paixienet import settings
 
 # 首页
@@ -108,21 +108,52 @@ def register(request):
 
 # 商城
 def cart(request):
-    return render(request,'cart.html')
+    token = request.COOKIES.get('token')
+
+    if token:
+        user = User.objects.get(token=token)
+        carts =Cart.objects.filter(user=user)
+
+        data ={
+            'user':user,
+            'carts':carts
+        }
+        return render(request, 'cart.html', context=data)
+    else:
+        return render(request,'login.html')
+
+
 
 # 物品详情
 def goodsinfo(request,goods_id):
 
+    token = request.COOKIES.get('token')
+    users = User.objects.filter(token=token)
     sport_f1_shoes = Sport_f1_shoes.objects.get(id=goods_id)
-    data = {
-        'sport_f1_shoes':sport_f1_shoes,
-    }
+    if users.exists():
+        user = users.first()
+        img_path = head_path(user.imgRoot)
+        data = {
+            'username': user.name,
+            "img_path": img_path,
+            'sport_f1_shoes': sport_f1_shoes,
+            'goodsinfo':goodsinfo,
 
-    return render(request,'goodsinfo.html',context=data)
+
+        }
+
+        return render(request, 'goodsinfo.html', context=data)
+    else:
+        data = {
+            'sport_f1_shoes':sport_f1_shoes,
+        }
+
+        return render(request,'goodsinfo.html',context=data)
 
 
 # 退出
 def logout(request):
+
     response = redirect('paixienet:mainweb')
     response.delete_cookie('token')
     return response
@@ -237,3 +268,66 @@ def test(request):
     lun_bo_imgs = Lun_bo.objects.all()
 
     return render(request,'test.html',context={'luo_bo_imgs':lun_bo_imgs})
+
+
+def addcart(request):
+    shoes_id = request.GET.get('shoes_id')
+    num = int(request.GET.get('num')) # 前端传过来的提交数据
+    print(num)
+    token = request.COOKIES.get('token')
+
+    resopnse_data = {
+        'message': '添加购物车成功',
+        'status': 1  # 1标识添加成功，0标识添加失败，-1标识未登录
+    }
+
+    if token:
+        shoes = Sport_f1_shoes.objects.get(pk=shoes_id)
+        user = User.objects.get(token=token)
+        carts = Cart.objects.filter(user=user).filter(shoes=shoes)
+        if carts.exists():  # 修改数量
+            cart = carts.first()
+            cart.num += num
+            cart.save()
+            resopnse_data['num'] = cart.num
+        else:  # 添加一条新记录
+            cart = Cart()
+            cart.user = user
+            cart.shoes = shoes
+            # cart.num = 1
+            cart.num = num
+            cart.save()
+            resopnse_data['num'] = cart.num
+        return JsonResponse(resopnse_data)
+    else:
+        resopnse_data['message'] = '未登录，请登录后操作'
+        resopnse_data['status'] = 0
+        return JsonResponse(resopnse_data)
+
+
+
+def subcart(request):
+    # 获取数据
+    shoes_id = request.GET.get('shoes_id')
+    token = request.COOKIES.get('token')
+
+    print(token,shoes_id)
+    # 对应用户 和 商品
+    shoes = Sport_f1_shoes.objects.get(pk=shoes_id)
+    user = User.objects.get(token=token)
+
+    # 删减操作
+    cart = Cart.objects.filter(user=user).filter(shoes=shoes).first()
+    if cart.num >= 1:
+        cart.num = cart.num - 1
+    else:
+        cart.num = 0
+    cart.save()
+
+    responseData = {
+        'msg': '购物车减操作成功',
+        'status': 1,
+        'num': cart.num
+    }
+    print(cart.num)
+    return JsonResponse(responseData)

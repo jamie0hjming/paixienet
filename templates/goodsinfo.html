@@ -117,11 +117,34 @@
             </div>
             <div class="head_topLoginleft">
                 <a href="#" class="mbicon"></a>
+
+
+
                 <p class="loginOut">
-                    <span>您好，欢迎来拍鞋网！</span>
-                    <a href="login.html" class="dologinBtn"></a>
-                    <span><a href="register.html">免费注册</a></span>
+                    {% if username %}
+
+                        {# 登录用户后，显示用户名，以及点击用户名显示个人信息 #}
+                        <span class="head_top_left_s1">您好，<b>{{ username }}</b>
+                            <a href="/uploadimg/">
+                            <img style="height: 15px ;width: 15px" src="{% static img_path %}" name='load_head'>
+                        </a>&nbsp;&nbsp;欢迎来到拍鞋网！
+                        </span>
+                        <a class="head_top_left_s1" href="{% url 'paixienet:logout' %}" >退出</a>
+                    {% else %}
+                        <span class="head_top_left_s1">您好，欢迎来拍鞋网！</span>
+                        <a href="{% url 'paixienet:login' %}" class="dologinBtn"></a> {# 登录 #}
+                        <a href="{% url 'paixienet:register' %}" target="_blank" class="head_top_left_a3">免费注册</a>
+                    {% endif %}
+                        </span>
+
+
+{#                    <span>您好，欢迎来拍鞋网！</span>#}
+{#                    <a href="login.html" class="dologinBtn"></a>#}
+{#                    <span><a href="register.html">免费注册</a></span>#}
                 </p>
+
+
+
             </div>
         </div>
     </div>
@@ -761,16 +784,15 @@
             <div id="smallArea" style="width: 209px; height: 209px;"></div>
 
         </div>
-        <div id="bigArea" style="">
-            <div class="bbigimg"></div>
+        <div id="bigArea" style="display: none">
+            <div class="bbigimg">
+                <img src="#" alt="">
+            </div>
         </div>
         <i class="previmg"></i>
         <div class="imglistbox">
             <ul class="imglist">
                 <li class="current">
-                    <a href="#"><img src="{% static sport_f1_shoes.c1 %}" alt=""></a>
-                </li>
-                <li>
                     <a href="#"><img src="{% static sport_f1_shoes.img1 %}" alt=""></a>
                 </li>
                 <li>
@@ -784,6 +806,9 @@
                 </li>
                 <li>
                     <a href="#"><img src="{% static sport_f1_shoes.img5 %}" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="{% static sport_f1_shoes.c1 %}" alt=""></a>
                 </li>
             </ul>
         </div>
@@ -810,7 +835,7 @@
             </p>
             <p>
                 销售数量
-                <b class="red">1231</b>
+                <b class="red">{{ sport_f1_shoes.num }}</b>
             </p>
             <p class="last">
                 拍鞋币
@@ -840,10 +865,21 @@
                     </ul>
                 </div>
                 <div class="sumbox">
+
+
+ {#购买数量**************************************************** #}
                     <span>数量：</span>
-                    <i class="num-down num-down-no"></i>
-                    <input class="num-text" type="text" value='1'>
-                    <i class="num-up"></i>
+                    <i class="num-down num-down-no" shoes_id="{{ sport_f1_shoes.id }}" ></i>
+
+                    <input class="num-text" type="text" value='0'>
+                    <i class="num-up" shoes_id="{{ sport_f1_shoes.id }}"></i>
+
+
+
+
+
+{# *********************************************************** #}
+
                 </div>
                 <div class="buttonbox">
                     <div class="payments">
@@ -852,7 +888,7 @@
 
                         </div>
                     </div>
-                    <a href="cart.html"><input class="bred" type="button" value="立即购买"></a>
+                    <a href="{% url 'paixienet:cart' %}"><input class="bred" type="button" value="立即购买"></a>
                     <input class="borg" type="button" value="加入购物车">
                 </div>
             </form>

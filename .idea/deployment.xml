@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="python1809AXF">
+    <serverData>
+      <paths name="python1809AXF">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/www/project/python1809axf" local="$PROJECT_DIR$/../../myprojectaxf" web="/" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

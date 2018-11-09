@@ -4,22 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>欢迎注册</title>
-{#    <link rel="stylesheet" type="text/css" href="css/base.css">#}
-{#    <link rel="stylesheet" type="text/css" href="css/layout.css">#}
-{#    <link rel="stylesheet" type="text/css" href="css/register.css">#}
-{#    <script src="js/jquery-1.12.3.js"></script>#}
-{#    <script src="js/jquery.cookie.js"></script>#}
-{#    <script src="js/user.js"></script>#}
+
 
 
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
     <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
     <script src="{% static 'js/jquery.cookie.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+
     <script src="{% static 'js/verifycode.js' %}"></script>
-{#    <script src="{% static 'js/user.js' %}"></script>#}
 
 
 </head>
@@ -30,40 +28,65 @@
     </div>
     <div class="login-content">
         <div class="register-area">
+
+
+
+    {# 注册区域//////////////////////////////////////////////////////////////////////// #}
+
             <div class="form">
                 <form action="{% url 'paixienet:register' %}" method="post">
                     {% csrf_token %}
                 <div>
                     <lable>账户名：</lable>
-                    <div class="base-text">
-                        <input class="login-text" type="text" placeholder="邮箱/手机号" name="username"/>
+                    <div class="base-text" id="account">
+                        <input class="login-text" type="text" placeholder="邮箱/手机号" name="username" required="required"/>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                     <span>
                         请输入邮箱/手机号
                     </span>
                 </div>
+
+
                 <div>
                     <lable>设置密码：</lable>
-                    <div class="base-text">
-                        <input class="login-text" type="password" name="password" />
+                    <div class="base-text" id="password">
+                        <input class="login-text" type="password" name="password" required="required"/>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                     <span>
                         6-20位字符，可使用字母、数字或符号的组合
                     </span>
                 </div>
+                    <div>
+                    <lable>昵称：</lable>
+                    <div class="base-text" id="nickname" >
+                        <input class="login-text" type="text" placeholder="昵称" name="nickname" required="required"/>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                    <span>
+                        请输入邮箱/手机号
+                    </span>
+                </div>
+
                 <div>
                     <lable>确认密码：</lable>
-                    <div class="base-text">
-                        <input class="login-text" type="password" name="passwordverify" />
+                    <div class="base-text" id="passwd">
+                        <input class="login-text" type="password" name="passwordverify" required="required" />
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                     <span>
                         请再次输入密码
                     </span>
                 </div>
+
+
                 <div class="codearea">
                     <lable>验证码：</lable>
-                    <div class="base-text base-text135">
-                        <input class="login-text" type="text" placeholder="验证码" name = 'verifycode'/>
+                    <div class="base-text base-text135" id="code">
+                        <input class="login-text" type="text" placeholder="验证码" name = 'verifycode' required="required"/>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+
                     </div>
                     <p><img src="{% url 'paixienet:verifycode' %}" id = 'verifycode'  ></p>
 
@@ -71,6 +94,8 @@
                         <div></div>
                     </span>
                 </div>
+
+
                 <div class="agreement">
                     <lable>
                         <input type="checkbox" checked/>
@@ -80,10 +105,20 @@
                 </div>
 {#                <a class="blue-button" >立即注册#}
 {#                </a>#}
-                    <input type="submit" value="立即注册" id="input" class="blue-button">
+                    <input type="submit" value="立即注册" id="subButton" class="blue-button">
 
                     </form>
             </div>
+
+    {# 注册区域//////////////////////////////////////////////////////////////////////// #}
+
+
+
+
+
+
+
+
             <div class="side">
                 我已有拍鞋网账户
                 <br>

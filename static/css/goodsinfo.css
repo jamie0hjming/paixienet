@@ -25,7 +25,7 @@
 /*大图*/
 .goodsimg{position: relative; z-index: 30; float: left; width: 420px;}
 .bigimg{position: relative; width: 418px; height: 418px; margin-bottom: 14px; border: 1px solid #f2f2f2;}
-#smallArea{position: absolute;width: 150px;height: 150px;border: 1px solid;}
+#smallArea{position: absolute;width: 150px;height: 150px;border: 1px solid;display: none}
 
 .bbigimg{width: 1200px;height: 1200px;background-size: 1200px 1200px;position: absolute;left: 420px;top: 0;overflow: hidden;display: block;}
 .bbigimg img{height: 100%;width: 100%;}

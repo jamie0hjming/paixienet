@@ -4,4 +4,9 @@ $(function () {
        count ++
         $(this).attr('src','/verifycode/'+count+'/')
 })
+
+
+
+
+
 })

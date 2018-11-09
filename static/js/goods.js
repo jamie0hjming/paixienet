@@ -76,8 +76,8 @@ $(function () {
     $(".sumbox i.num-down-no").click(function () {
 
         var num_down = $(".sumbox input").val();
-        if (num_down == 1) {
-            $(".sumbox input").val();
+        if (num_down <= 1) {
+            $(".sumbox input").val(1);
         } else {
             num_down--;
             $(".sumbox input").val(num_down);
@@ -91,7 +91,7 @@ $(function () {
         var shoes_id = $('.num-up').attr('shoes_id')
         $.get('/addcart/', {'shoes_id': shoes_id,'num':$num}, function (response) {
             if (response.status ==1){
-                $(".sumbox input").val(0)
+                $(".sumbox input").val(1)
             }else {
                 window.open('/login/', target="_self")
             }

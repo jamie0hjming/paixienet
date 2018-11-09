@@ -43,8 +43,40 @@ class Cart(models.Model):
     user = models.ForeignKey(User)
     shoes = models.ForeignKey(Sport_f1_shoes)
     num = models.IntegerField()
-    is_select = models.BooleanField(default=True)
+    is_select = models.BooleanField(default=True) # 默认商品是被选中的
 
     class Meta:
         db_table='cart'
+
+class Order(models.Model):
+    user = models.ForeignKey(User)
+    # 创建时间
+    createtime = models.DateTimeField(auto_now_add=True)
+    # 状态
+    # -1 过期
+    # 1 未付款
+    # 2 已付款，未发货
+    # 3 已发货，快递
+    # 4 已签收，未评价
+    # 5 已评价
+    # 6 退款....
+    status = models.IntegerField(default=1)
+    # 订单号
+    identifier = models.CharField(max_length=256)
+
+
+# 订单商品
+# 一个订单 对应 多个商品
+# 在从表中声明关系
+class OrderGoods(models.Model): # 关联订单和商品(其中订单还关联用户）
+    # 订单
+    order = models.ForeignKey(Order)
+    # 商品
+    sport_f1_shoes = models.ForeignKey(Sport_f1_shoes)
+    # 个数
+    number = models.IntegerField(default=1)
+
+    # 大小
+    # 颜色
+
 

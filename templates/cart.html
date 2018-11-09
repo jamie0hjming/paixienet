@@ -10,20 +10,25 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
     <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
     <script src="{% static 'js/jquery.cookie.js' %}"></script>
-    <script src="{% static 'js/cart.js' %}"></script>
+    <script src="{% static 'js/cart-1.js' %}"></script>
 
 
 </head>
 
 <body>
 
-
 <div class="head" id="head">
     <div class="head-topline">
         <div class="head-topLogin">
             <div class="head_topLoginright">
                     <span class="login-cart">
-                        <a href="{% url 'paixienet:cart' %}"><i></i>购物车<b>0</b></a>
+                        <a href="{% url 'paixienet:cart' %}"><i></i>
+                            购物车<b>{% if carts_num %}
+                               {{ carts_num }}
+                                {% else %}
+                                0
+                            {% endif %}</b>
+                        </a>
                         <div class="cartshow">
                             <b class="cartboth">您还没有购买任何商品，快去挑选把！</b>
                         </div>
@@ -697,9 +702,9 @@
         </tr>
 
         {% for cart in carts %}
-            <tr class="ttr">
+            <tr class="ttr" >
                 <td>
-                    <input type='checkbox' checked='checked' class="tr2-input">
+                    <input type='checkbox' checked='checked' class="tr2-input" cart_id ='{{ cart.id }}'>
                     <img src="{% static cart.shoes.img %}" alt="">
 
                 </td>
@@ -711,16 +716,18 @@
 
                     </ul>
                 </td>
-                <td class="box-price" >￥{{ cart.shoes.price }}</td>
+                <td class="box-price" price='{{ cart.shoes.price }}'>￥{{ cart.shoes.price }}</td>
                 <td class="box-num">
                     <span class="glyphicon glyphicon-minus num-minus" shoes_id="{{ cart.shoes.id }}"></span>
-{#                    <a href="" class="num-minus" shoes_id='{{ cart.shoes.id }}'></a>#}
-                    <input type= 'text' class='num-text' value='{{ cart.num }}'>
-{#                    <a href="" class="num-add" shoes_id="{{ cart.shoes.id }}"></a>#}
+                    {#                    <a href="" class="num-minus" shoes_id='{{ cart.shoes.id }}'></a>#}
+                    <input type='text' class='num-text' value='{{ cart.num }}' num = '{{ cart.num }}'>
+                    {#                    <a href="" class="num-add" shoes_id="{{ cart.shoes.id }}"></a>#}
                     <span class="glyphicon glyphicon-plus num-add" shoes_id="{{ cart.shoes.id }}"></span>
                 </td>
-                <td class="box-allprice">{{ cart.num }}*{{ cart.shoes.price }}</td>
-                <td class="box-operate"><a href="">删除</a>
+                <td class="box-allprice"></td>
+
+
+                <td class="box-operate"><a href="{% url 'paixienet:delbut'  cart.id  %}" cart_id ='{{ cart.id }}'>删除</a>
                 </td>
 
 
@@ -735,12 +742,14 @@
             <input name="" value="" type="checkbox" class="js-select-all">
             <a class="js-select-all  all">全选</a>
         </label>
-        <a id="del-chk" href="javascript:;">删除选中商品</a>
-        <a href="mainWeb.html">继续购物</a>
-        <a id="clear-cart" href="javascript:;">清空购物车</a>
-        合计（不含运费）：
+        <a id="del-chk" href="{% url 'paixienet:delselectgoods' %}">删除选中商品</a>
+        <a href="{% url 'paixienet:mainweb' %}">继续购物</a>
+        <a id="clear-cart" href="{% url 'paixienet:delallgoods' %}">清空购物车</a>
+        合计（不含运费）：￥
         <strong class="orange yh money">0.00</strong>
-        <a class="go-pay" id="js-go-pay">去结算&gt;</a>
+
+        {#  跳转订单页面 #}
+        <a href="#" class="go-pay" id="js-go-pay">去结算&gt;</a>
     </div>
 </div>
 

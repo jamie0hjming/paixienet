@@ -16,6 +16,7 @@ from paixienet import settings
 def mainweb(request):
     token = request.COOKIES.get('token')
     users =User.objects.filter(token = token)
+
     lun_bo_imgs = Lun_bo.objects.all()
     sport_f1_shoes = Sport_f1_shoes.objects.all()
     sport_f1_shoes1 = sport_f1_shoes[0:10]
@@ -25,6 +26,8 @@ def mainweb(request):
         print(shoes.img)
     if users.exists():
         user = users.first()
+        carts = Cart.objects.filter(user=user)
+        carts_num = carts.count()
         img_path = head_path(user.imgRoot)
 
         data = {
@@ -34,6 +37,7 @@ def mainweb(request):
             'sport_f1_shoes1':sport_f1_shoes1,
             'sport_f1_shoes2': sport_f1_shoes2,
             'sport_f1_shoes3': sport_f1_shoes3,
+            'carts_num':carts_num,
         }
         return render(request,'mainWeb.html',context=data)
     else:
@@ -113,10 +117,12 @@ def cart(request):
     if token:
         user = User.objects.get(token=token)
         carts =Cart.objects.filter(user=user)
+        carts_num = carts.count()
 
         data ={
             'user':user,
-            'carts':carts
+            'carts':carts,
+            'carts_num':carts_num,
         }
         return render(request, 'cart.html', context=data)
     else:
@@ -132,12 +138,15 @@ def goodsinfo(request,goods_id):
     sport_f1_shoes = Sport_f1_shoes.objects.get(id=goods_id)
     if users.exists():
         user = users.first()
+        carts = Cart.objects.filter(user=user)
+        carts_num = carts.count()
         img_path = head_path(user.imgRoot)
         data = {
             'username': user.name,
             "img_path": img_path,
             'sport_f1_shoes': sport_f1_shoes,
             'goodsinfo':goodsinfo,
+            'carts_num':carts_num,
 
 
         }
@@ -264,12 +273,6 @@ def verifycode(request):
     return HttpResponse(buff.getvalue(), 'image/png')
 
 
-def test(request):
-    lun_bo_imgs = Lun_bo.objects.all()
-
-    return render(request,'test.html',context={'luo_bo_imgs':lun_bo_imgs})
-
-
 def addcart(request):
     shoes_id = request.GET.get('shoes_id')
     num = int(request.GET.get('num')) # 前端传过来的提交数据
@@ -282,7 +285,7 @@ def addcart(request):
     }
 
     if token:
-        shoes = Sport_f1_shoes.objects.get(pk=shoes_id)
+        shoes = Sport_f1_shoes.objects.get(pk=int(shoes_id))
         user = User.objects.get(token=token)
         carts = Cart.objects.filter(user=user).filter(shoes=shoes)
         if carts.exists():  # 修改数量
@@ -313,15 +316,17 @@ def subcart(request):
 
     print(token,shoes_id)
     # 对应用户 和 商品
-    shoes = Sport_f1_shoes.objects.get(pk=shoes_id)
+    shoes = Sport_f1_shoes.objects.get(pk=int(shoes_id))
     user = User.objects.get(token=token)
 
     # 删减操作
     cart = Cart.objects.filter(user=user).filter(shoes=shoes).first()
-    if cart.num >= 1:
+    if cart.num > 1:
+        print(cart.num)
         cart.num = cart.num - 1
     else:
         cart.num = 0
+        cart.delect()
     cart.save()
 
     responseData = {
@@ -331,3 +336,75 @@ def subcart(request):
     }
     print(cart.num)
     return JsonResponse(responseData)
+
+
+
+
+def order(request):
+
+    return render(request,'order.html')
+
+
+def changecartstatus(request):  # 修改单选的选中状态 ok
+    select_status = request.GET.get('select_status') # 获取购物车中物品被选中状态
+    cart_id = request.GET.get('cart_id')  # 获取当前被改变选中状态的对应购物车ID
+
+    cart = Cart.objects.get(pk=int(cart_id))  # 通过购物车ID 获取对应购物车对象，然后对改变其状态
+    if select_status == 'true':
+        cart.is_select = True
+        cart.save()
+    else:
+        cart.is_select = False
+        cart.save()
+    return JsonResponse({'status':1})
+
+
+
+def changecartselect(request):  # 修改全选的选中状态
+
+    select_status = request.GET.get('select_status') # 获取购物车全选状态
+
+    print(select_status)
+    cart = Cart.objects.all()  #  通过购物车ID 获取对应购物车对象，然后对改变其状态
+    print(cart.count())
+    count = 0
+    if select_status == 'true':
+        for cart in cart:
+            count += 1
+            print(count)
+            cart.is_select = True
+            cart.save()
+            print(cart.is_select)
+    elif select_status == 'false':
+        for cart in cart:
+            count += 1
+            print(count)
+            cart.is_select = False
+            cart.save()
+            print(cart.is_select)
+
+    return JsonResponse({'status':1})
+
+
+def delallgoods(request):  # 清空购物车
+    carts =Cart.objects.all()
+    carts.delete()
+    return redirect('paixienet:cart')
+
+
+def delselectgoods(request):  # 删除选中商品
+
+
+    carts =Cart.objects.filter(is_select=True)
+    if carts:
+
+        carts.delete()
+
+    return redirect('paixienet:cart')
+
+
+def delbut(request,cart_id):
+    cart = Cart.objects.get(pk = int(cart_id))
+    cart.delete()
+
+    return redirect('paixienet:cart')

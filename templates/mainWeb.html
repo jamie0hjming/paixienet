@@ -29,10 +29,14 @@
         <div class="allrightshow_top">
             <!--1-->
             <span class="allrightshow_top_buycar">
-						<a href="cart.html">
+						<a href="{% url 'paixienet:cart' %}">
 							<span class="allrightshow_top_buycar_s1"></span>
 							<span class="allrightshow_top_buycar_s2">购物车</span>
-							<i>0</i>
+                            {% if carts_num %}
+                                <i>{{ carts_num }}</i>
+                            {% else %}
+                                <i>0</i>
+                            {% endif %}
 						</a>
 						<div class="allrightshow_top_buycar_thing">
 							<span></span>

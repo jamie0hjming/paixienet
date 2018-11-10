@@ -23,11 +23,13 @@
             <div class="head_topLoginright">
                     <span class="login-cart">
                         <a href="{% url 'paixienet:cart' %}"><i></i>
-                            购物车<b>{% if carts_num %}
-                               {{ carts_num }}
+                            购物车<b class="count_num">
+                                {% if carts_num %}
+                                    {{ carts_num }}
                                 {% else %}
-                                0
-                            {% endif %}</b>
+                                    0
+                                {% endif %}
+                            </b>
                         </a>
                         <div class="cartshow">
                             <b class="cartboth">您还没有购买任何商品，快去挑选把！</b>
@@ -702,9 +704,9 @@
         </tr>
 
         {% for cart in carts %}
-            <tr class="ttr" >
+            <tr class="ttr">
                 <td>
-                    <input type='checkbox' checked='checked' class="tr2-input" cart_id ='{{ cart.id }}'>
+                    <input type='checkbox' checked='checked' class="tr2-input" cart_id='{{ cart.id }}'>
                     <img src="{% static cart.shoes.img %}" alt="">
 
                 </td>
@@ -720,14 +722,14 @@
                 <td class="box-num">
                     <span class="glyphicon glyphicon-minus num-minus" shoes_id="{{ cart.shoes.id }}"></span>
                     {#                    <a href="" class="num-minus" shoes_id='{{ cart.shoes.id }}'></a>#}
-                    <input type='text' class='num-text' value='{{ cart.num }}' num = '{{ cart.num }}'>
+                    <input type='text' class='num-text' value='{{ cart.num }}' num='{{ cart.num }}'>
                     {#                    <a href="" class="num-add" shoes_id="{{ cart.shoes.id }}"></a>#}
                     <span class="glyphicon glyphicon-plus num-add" shoes_id="{{ cart.shoes.id }}"></span>
                 </td>
                 <td class="box-allprice"></td>
 
 
-                <td class="box-operate"><a href="{% url 'paixienet:delbut'  cart.id  %}" cart_id ='{{ cart.id }}'>删除</a>
+                <td class="box-operate"><a href="{% url 'paixienet:delbut'  cart.id %}" cart_id='{{ cart.id }}'>删除</a>
                 </td>
 
 

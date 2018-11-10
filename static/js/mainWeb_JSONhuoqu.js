@@ -300,4 +300,18 @@ $(function () {
     });
 
 
+
+    //动态刷新主页上的购物车物品种类数
+    setInterval(flush,100)
+    function flush() {
+        $.get('/dynflashnum/',function (response) {
+            num = response.num
+
+            $('.count_num').html(num)
+            $('.head_top_right_a1_s2').html(num)
+
+        })
+    }
+
+
 })

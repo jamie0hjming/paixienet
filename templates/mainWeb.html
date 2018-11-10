@@ -32,11 +32,13 @@
 						<a href="{% url 'paixienet:cart' %}">
 							<span class="allrightshow_top_buycar_s1"></span>
 							<span class="allrightshow_top_buycar_s2">购物车</span>
+                            <i class="count_num">
                             {% if carts_num %}
-                                <i>{{ carts_num }}</i>
+                                {{ carts_num }}
                             {% else %}
-                                <i>0</i>
+                               0
                             {% endif %}
+                            </i>
 						</a>
 						<div class="allrightshow_top_buycar_thing">
 							<span></span>
@@ -120,7 +122,13 @@
 								<a href="{% url 'paixienet:cart' %}" class="head_top_right_a1">
 									<i class="head_top_right_a1_i"></i>
 									<span class="head_top_right_a1_s1">购物车</span>
-									<b class="head_top_right_a1_s2">0</b>
+									<b class="head_top_right_a1_s2">
+                                        {% if carts_num %}
+                                            {{ carts_num }}
+                                        {% else %}
+                                            0
+                                        {% endif %}
+                                    </b>
 								</a>
 								<div class="head_top_right_go">
 									<p>您还没有购买任何商品，快去挑选把！</p>

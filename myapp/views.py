@@ -309,35 +309,41 @@ def addcart(request):
 
 
 
+
 def subcart(request):
+
+
     # 获取数据
     shoes_id = request.GET.get('shoes_id')
     token = request.COOKIES.get('token')
 
-    print(token,shoes_id)
     # 对应用户 和 商品
     shoes = Sport_f1_shoes.objects.get(pk=int(shoes_id))
     user = User.objects.get(token=token)
+    cart = Cart.objects.filter(user=user).get(shoes=shoes)
 
-    # 删减操作
-    cart = Cart.objects.filter(user=user).filter(shoes=shoes).first()
-    if cart.num > 1:
-        print(cart.num)
-        cart.num = cart.num - 1
-    else:
-        cart.num = 0
-        cart.delect()
-    cart.save()
-
+    print(cart.id)
     responseData = {
         'msg': '购物车减操作成功',
         'status': 1,
         'num': cart.num
     }
+    # 删减操作
     print(cart.num)
-    return JsonResponse(responseData)
+    if cart.num > 1:
+        print(cart.num)
+        cart.num = cart.num - 1
+        cart.save()
+        responseData['num'] = cart.num
+        return JsonResponse(responseData)
+    else:
+        print('aaaaaaaaaaaaaaaaaaaaaaaaaaa')
 
 
+        responseData['status'] = 0
+        cart.delete()
+
+        return JsonResponse(responseData)
 
 
 def order(request):
@@ -354,6 +360,7 @@ def changecartstatus(request):  # 修改单选的选中状态 ok
         cart.is_select = True
         cart.save()
     else:
+
         cart.is_select = False
         cart.save()
     return JsonResponse({'status':1})
@@ -368,6 +375,7 @@ def changecartselect(request):  # 修改全选的选中状态
     cart = Cart.objects.all()  #  通过购物车ID 获取对应购物车对象，然后对改变其状态
     print(cart.count())
     count = 0
+
     if select_status == 'true':
         for cart in cart:
             count += 1
@@ -404,7 +412,20 @@ def delselectgoods(request):  # 删除选中商品
 
 
 def delbut(request,cart_id):
-    cart = Cart.objects.get(pk = int(cart_id))
+    cart = Cart.objects.get(pk=int(cart_id))
     cart.delete()
 
     return redirect('paixienet:cart')
+
+
+def dynflashnum(request):
+    token = request.COOKIES.get('token')
+    data = {}
+    print(11111111111111111111)
+    if token:
+        user = User.objects.get(token=token)
+        cart = Cart.objects.filter(user=user)
+        num = cart.count()
+        data['status'] = 1
+        data['num'] = num
+    return JsonResponse(data)

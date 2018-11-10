@@ -24,7 +24,13 @@
             <li>
                 <a href="{% url 'paixienet:cart' %}" class="right-cart">
                     <span>购物车</span>
-                    <i>{{ carts_num }}</i>
+                    <i class="count_num">
+                        {% if carts_num %}
+                                {{ carts_num }}
+                            {% else %}
+                               0
+                            {% endif %}
+                    </i>
                 </a>
                 <div class="allright_libox cart-box">
                     <div class="loginnocart">
@@ -76,7 +82,7 @@
             <div class="head_topLoginright">
                     <span class="login-cart">
                         <a href="{% url 'paixienet:cart' %}"><i></i>购物车
-                            <b>
+                            <b class="count_num">
                                 {% if carts_num %}
                                     {{ carts_num }}
                                 {% else %}

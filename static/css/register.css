@@ -23,3 +23,37 @@ a {cursor: pointer; text-decoration: none; color: #fff;}
 /*side*/
 .side{line-height: 40px; display: inline; float: left; margin-left: 30px; color: #919191;}
 .register-area .side a{line-height: 25px; display: inline-block; width: 100px; height: 25px; margin-bottom: 4px;vertical-align: middle; text-indent: 30px; letter-spacing: 2px; color: #fff; background-position: -118px 0;}
+.register-area-left {width: 70%;height: 100%;padding: auto}
+.register-area-right {width: 30%;height: 100%}
+
+.col-sm-9 {
+    margin-top: 20px;
+}
+.col-sm-3 {
+    margin-top: 25px;
+    padding-left: 50px;
+    color: black;
+}
+
+.verifycode-input img{
+    width: 30%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 3px;
+
+    float: right;
+    margin-top: -34px;
+    margin-bottom: 30px;
+
+}
+.inputSuccess3-code {
+    width: 60%;
+}
+.register-area-left i{
+    text-align: center;
+    color: red;
+    font-size: 1.5rem;
+    margin-left: 30%;
+    padding: 0;
+}

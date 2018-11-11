@@ -2,6 +2,7 @@ import hashlib
 import io
 import os
 import random
+import time
 import uuid
 
 from django.http import HttpResponse, JsonResponse
@@ -9,7 +10,7 @@ from django.shortcuts import render, redirect
 
 
 # Create your views here.
-from myapp.models import User, Lun_bo, Sport_f1_shoes, Cart
+from myapp.models import User, Lun_bo, Sport_f1_shoes, Cart, Order, OrderGoods
 from paixienet import settings
 
 # 首页
@@ -54,12 +55,12 @@ def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
     elif request.method == 'POST':
-        username = request.POST.get('username')
+        account = request.POST.get('account')
         password = generate_password(request.POST.get('password'))
-        users = User.objects.filter( name=username , password=password )
+        users = User.objects.filter(account=account, password=password)
         if users.exists():
             user = users.first()
-            user.token = uuid.uuid3(uuid.uuid4(),'username')
+            user.token = uuid.uuid3(uuid.uuid4(),'account')
             user.save()
             response = redirect('paixienet:mainweb')
             response.set_cookie('token',user.token)
@@ -79,24 +80,28 @@ def register(request):
     if request.method == "GET":
         return render(request,'register.html')
     elif request.method == "POST":
-        username = request.POST.get('username')
+        account = request.POST.get('account')
         password = request.POST.get('password')
-        passwordverify = request.POST.get('passwordverify')
+        username = request.POST.get('nickname')
+        passwd = request.POST.get('passwd')
         verifycode = request.POST.get('verifycode')
+
         verifycode = verifycode.upper()
 
         print(print("verifycode:{}".format(verifycode)))
         print(print("rand_str:{}".format(rand_str)))
         print(verifycode== rand_str)
-        if verifycode== rand_str:
-           print("QQQQQQQQ")
+        if verifycode != rand_str:
+           return HttpResponse('验证码错误')
 
-        if (passwordverify == password) and password and username and (verifycode== rand_str):
+        if (passwd == password) and password and username and (verifycode== rand_str):
             try:
+
                 user = User()
                 user.name = username
                 user.password = generate_password(password)
                 user.token = uuid.uuid3(uuid.uuid4(),'username')
+                user.account = account
                 user.save()
                 response = redirect('paixienet:mainweb')
                 response.set_cookie('token',user.token)
@@ -212,7 +217,7 @@ def head_path(img_name):
 
 from PIL import Image,ImageDraw,ImageFont
 def verifycode(request):
-    print("AAAAAAAAAAAAA")
+
     # 创建图片
     width = 150
     height = 50
@@ -337,8 +342,6 @@ def subcart(request):
         responseData['num'] = cart.num
         return JsonResponse(responseData)
     else:
-        print('aaaaaaaaaaaaaaaaaaaaaaaaaaa')
-
 
         responseData['status'] = 0
         cart.delete()
@@ -346,9 +349,10 @@ def subcart(request):
         return JsonResponse(responseData)
 
 
-def order(request):
+def order(request,identifier):
+    order = Order.objects.get(identifier=identifier)
 
-    return render(request,'order.html')
+    return render(request, 'order.html', context={'order': order})
 
 
 def changecartstatus(request):  # 修改单选的选中状态 ok
@@ -421,7 +425,6 @@ def delbut(request,cart_id):
 def dynflashnum(request):
     token = request.COOKIES.get('token')
     data = {}
-    print(11111111111111111111)
     if token:
         user = User.objects.get(token=token)
         cart = Cart.objects.filter(user=user)
@@ -429,3 +432,51 @@ def dynflashnum(request):
         data['status'] = 1
         data['num'] = num
     return JsonResponse(data)
+
+
+def checkaccount(request):
+    account = request.GET.get('account')
+    print(account)
+    user = User.objects.filter(account=account)
+    print(user.count())
+    data = {}
+    if user:
+        data['status'] = 0
+        data['msg'] = '用户名已被注册'
+    else:
+        data['status'] = 1
+        data['msg'] = '用户名可用'
+    return JsonResponse(data)
+
+
+def generateorder(request):
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+
+    # 生成订单
+    order = Order()
+    order.user = user
+    order.identifier = str(int(time.time())) + str(random.randrange(10000, 100000))
+    order.save()
+
+    # 订单商品
+    carts = Cart.objects.filter(user=user).filter(is_select=True)
+    for cart in carts:
+        orderGoods = OrderGoods()
+        orderGoods.order = order
+        orderGoods.sport_f1_shoes = cart.shoes
+        orderGoods.number = cart.num
+        orderGoods.save()
+
+        # 从购物车移除
+        cart.delete()
+
+    responseData = {
+        'msg': '订单生成成功',
+        'status': 1,
+        'identifier': order.identifier
+    }
+
+    return JsonResponse(responseData)
+
+

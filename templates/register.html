@@ -6,129 +6,120 @@
     <title>欢迎注册</title>
 
 
-
-
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
     <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
     <script src="{% static 'js/jquery.cookie.js' %}"></script>
-        <script src="{% static 'js/bootstrap.js' %}"></script>
-
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
     <script src="{% static 'js/verifycode.js' %}"></script>
 
 
 </head>
 <body>
-    <div class="login-header">
-        <a href="#" class="logo"></a>
-        <h1>欢迎注册</h1>
-    </div>
-    <div class="login-content">
-        <div class="register-area">
+<div class="login-header">
+    <a href="#" class="logo"></a>
+    <h1>欢迎注册</h1>
+</div>
+<div class="login-content">
+    <div class="register-area">
 
 
+        {# 注册区域//////////////////////////////////////////////////////////////////////// #}
 
-    {# 注册区域//////////////////////////////////////////////////////////////////////// #}
-
-            <div class="form">
-                <form action="{% url 'paixienet:register' %}" method="post">
-                    {% csrf_token %}
-                <div>
-                    <lable>账户名：</lable>
-                    <div class="base-text" id="account">
-                        <input class="login-text" type="text" placeholder="邮箱/手机号" name="username" required="required"/>
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="form">
+            <form action="{% url 'paixienet:register' %}" method="post" id="formid">
+                {% csrf_token %}
+                <div class="register-area-left">
+                    <div class="form-group has-success has-feedback" id="account">
+                        <label class="control-label col-sm-3" for="inputSuccessAccount">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputSuccessAccount"
+                                   name="account" required="required">
+                            <span class="glyphicon glyphicon-ok form-control-feedback" ></span>
+                        </div>
+                        <i></i>
                     </div>
-                    <span>
-                        请输入邮箱/手机号
-                    </span>
-                </div>
-
-
-                <div>
-                    <lable>设置密码：</lable>
-                    <div class="base-text" id="password">
-                        <input class="login-text" type="password" name="password" required="required"/>
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <div class="form-group has-success has-feedback" id="password">
+                        <label class="control-label col-sm-3" for="password">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="password"
+                                   name="password" required="required">
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                        <i></i>
                     </div>
-                    <span>
-                        6-20位字符，可使用字母、数字或符号的组合
-                    </span>
-                </div>
+                    <div class="form-group has-success has-feedback" id="passwd">
+                        <label class="control-label col-sm-3" for="passwd">确认密码:</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="passwd"
+                                   name="passwd" required="required">
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                        <i></i>
+                    </div>
+                    <div class="form-group has-success has-feedback" id="nickname">
+                        <label class="control-label col-sm-3" for="inputSuccessNickname">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputSuccessNickname"
+                                   name="nickname" required="required">
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+
+                        </div>
+                        <i></i>
+                    </div>
                     <div>
-                    <lable>昵称：</lable>
-                    <div class="base-text" id="nickname" >
-                        <input class="login-text" type="text" placeholder="昵称" name="nickname" required="required"/>
-                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-                    <span>
-                        请输入邮箱/手机号
-                    </span>
-                </div>
+                        <div class="form-group has-success has-feedback verifycode" id="codearea">
+                            {# inputSuccess3 可改变宽度 #}
+                            <label class="control-label col-sm-3 verifycode-label" for="verifycode1">验&nbsp;&nbsp;证&nbsp;&nbsp;码:</label>
+                            <div class="col-sm-9 input-code verifycode-input">
+                                <input type="text" class="form-control inputSuccess3-code" id="verifycode1"
+                                       name="verifycode" required="required">
+                                <span><img src="{% url 'paixienet:verifycode' %}" id='verifycode'></span>
+                                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="false"></span>
 
-                <div>
-                    <lable>确认密码：</lable>
-                    <div class="base-text" id="passwd">
-                        <input class="login-text" type="password" name="passwordverify" required="required" />
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-                    <span>
-                        请再次输入密码
-                    </span>
-                </div>
+                            </div>
 
-
-                <div class="codearea">
-                    <lable>验证码：</lable>
-                    <div class="base-text base-text135" id="code">
-                        <input class="login-text" type="text" placeholder="验证码" name = 'verifycode' required="required"/>
-                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
 
                     </div>
-                    <p><img src="{% url 'paixienet:verifycode' %}" id = 'verifycode'  ></p>
 
-                    <span>
-                        <div></div>
-                    </span>
+
+                    <div class="agreement">
+                        <lable>
+                            <input type="checkbox" checked/>
+                            我已阅读并同意
+                            <a href="#">《拍鞋服务协议》</a>
+                        </lable>
+                    </div>
+
+
+                    <input type="button" value="立即注册" class="blue-button">
+
+                </div>
+                <div class="register-area-right">
+
                 </div>
 
+            </form>
+        </div>
 
-                <div class="agreement">
-                    <lable>
-                        <input type="checkbox" checked/>
-                        我已阅读并同意
-                        <a href="#">《拍鞋服务协议》</a>
-                    </lable>
-                </div>
-{#                <a class="blue-button" >立即注册#}
-{#                </a>#}
-                    <input type="submit" value="立即注册" id="subButton" class="blue-button">
-
-                    </form>
-            </div>
-
-    {# 注册区域//////////////////////////////////////////////////////////////////////// #}
+        {# 注册区域//////////////////////////////////////////////////////////////////////// #}
 
 
-
-
-
-
-
-
-            <div class="side">
-                我已有拍鞋网账户
-                <br>
-                现在就
-                <a href="{% url 'paixienet:login' %}">立即登录</a>
-            </div>
+        <div class="side">
+            我已有拍鞋网账户
+            <br>
+            现在就
+            <a href="{% url 'paixienet:login' %}">立即登录</a>
         </div>
     </div>
-    <div class="login-footer">
-        Copyright © 2007-2016 Paixie.net All Rights Reserved 增值电信业务经营许可证：闽B2-20110084
-    </div>
+</div>
+<div class="login-footer">
+    Copyright © 2007-2016 Paixie.net All Rights Reserved 增值电信业务经营许可证：闽B2-20110084
+</div>
 </body>
 </html>

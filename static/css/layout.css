@@ -188,7 +188,7 @@
 .login-content .base-text{line-height: 36px; position: relative; display: inline-block; width: 290px; height: 36px; margin: 5px; vertical-align: middle; border: 1px solid #dadada; background: #fff;}
 .login-content .base-text-focus{border-color: #6cb8df;}
 .login-content .base-text-error{border-color: #e46666;}
-.login-content .login-text{font: 14px 'Microsoft YaHei';line-height: 20px; width: 257px; margin-left: 5px; padding: 8px 24px 8px 4px; border: 0 none;}
+.login-content .login-text{font: 14px 'Microsoft YaHei';line-height: 20px; width: 257px; margin-left: 5px; padding: 0px 24px 0px 4px; border: 0 none;}
 .login-content .v-ok,
 .login-content .v-info,
 .login-content .v-error,

@@ -281,6 +281,7 @@ def verifycode(request):
 def addcart(request):
     shoes_id = request.GET.get('shoes_id')
     num = int(request.GET.get('num')) # 前端传过来的提交数据
+    print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
     print(num)
     token = request.COOKIES.get('token')
 
@@ -350,9 +351,24 @@ def subcart(request):
 
 
 def order(request,identifier):
-    order = Order.objects.get(identifier=identifier)
+    token = request.COOKIES.get('token')
 
-    return render(request, 'order.html', context={'order': order})
+    if token:
+        order = Order.objects.get(identifier=identifier)
+        user = User.objects.get(token=token)
+        carts = Cart.objects.filter(user=user)
+        carts_num = carts.count()
+
+        data = {
+            'order':order,
+            'user': user,
+            'carts': carts,
+            'carts_num': carts_num,
+        }
+        return render(request, 'order.html', context=data)
+    else:
+        return render(request, 'login.html')
+
 
 
 def changecartstatus(request):  # 修改单选的选中状态 ok

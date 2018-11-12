@@ -10,7 +10,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
     <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
     <script src="{% static 'js/jquery.cookie.js' %}"></script>
-    <script src="{% static 'js/order.js' %}"></script>
+    <script src="{% static 'js/orderinfo.js' %}"></script>
+
+
 
 
 </head>
@@ -23,7 +25,7 @@
             <div class="head_topLoginright">
                     <span class="login-cart">
                         <a href="{% url 'paixienet:cart' %}"><i></i>
-                            购物车<b>{% if carts_num %}
+                            购物车<b class="count_num">{% if carts_num %}
                                {{ carts_num }}
                                 {% else %}
                                 0
@@ -713,8 +715,8 @@
                         {{ cart.sport_f1_shoes.sc }}
                     </ul>
                 </td>
-                <td class="box-price" price='{{ cart.shoes.price }}'>￥ {{ cart.sport_f1_shoes.price }}</td>
-                <td class="box-num">
+                <td id ='price' class="box-price" price='{{ cart.sport_f1_shoes.price }}'>￥ {{ cart.sport_f1_shoes.price }}</td>
+                <td class="box-num" id="box-num-id">
                     {{ cart.number }}
                 </td>
                 <td class="box-allprice"></td>

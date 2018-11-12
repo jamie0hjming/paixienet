@@ -87,7 +87,7 @@
                         <a href="{% url 'paixienet:login' %}" class="dologinBtn"></a> {# 登录 #}
                         <a href="{% url 'paixienet:register' %}" target="_blank" class="head_top_left_a3">免费注册</a>
                     {% endif %}
-                    </span>
+
                 </p>
             </div>
         </div>
@@ -695,7 +695,7 @@
     </div>
     <table class="cart-box-current">
         <tr>
-            <th class="box-chk"><input type="checkbox" class="js-select-all">全选</th>
+            <th class="box-chk"><input type="checkbox" class="js-select-all js-select-all-nput">全选</th>
             <th class="box-name">商品名称</th>
             <th class="box-price">拍鞋价(元)</th>
             <th class="box-num">数量</th>
@@ -741,7 +741,7 @@
     </table>
     <div class="area-go-pay">
         <label class="xcartall">
-            <input name="" value="" type="checkbox" class="js-select-all">
+            <input name="" value="" type="checkbox" class="js-select-all js-select-all-">
             <a class="js-select-all  all">全选</a>
         </label>
         <a id="del-chk" href="{% url 'paixienet:delselectgoods' %}">删除选中商品</a>

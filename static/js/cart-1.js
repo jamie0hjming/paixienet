@@ -6,13 +6,13 @@ $(function () {
     $('.tr2-input').each(function () {
         select_status = $(this).prop('checked')
         cart_id = $(this).attr('cart_id')
-        console.log(select_status)
+
         data = {
             'select_status': select_status,
             'cart_id': cart_id,
         }
         $.get('/changecartstatus/', data, function (response) {
-            console.log(response.status)
+
         })
     })
 
@@ -44,14 +44,14 @@ $(function () {
         var all_sum = 0
         $('.ttr').each(function () {
             sing_allprice1 = $(this).find('td').eq(4).text()
-            console.log(sing_allprice1)
+
             // 判断 判断单类商品是否存在，因为在购物车中减商品到0时，会出现NaN
             if (sing_allprice1) {
 
                 all_sum += parseInt(sing_allprice1)
             }
 
-            console.log(all_sum)
+
         })
         $('.area-go-pay').find('strong').html(all_sum)
     }
@@ -115,7 +115,7 @@ $(function () {
         }
 
         $.get('/changecartstatus/', data, function (response) {
-            console.log(response.status)
+
         })
         allcheack()
     })
@@ -167,8 +167,9 @@ $(function () {
         $('.tr2-input').each(function () {
 
             statusq = $(this).prop('checked')
+            console.log(statusq)
 
-            if (~statusq) {
+            if (!statusq) {
 
                 allcheack_tatus = false
             }

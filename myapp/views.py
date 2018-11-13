@@ -10,6 +10,8 @@ from django.shortcuts import render, redirect
 
 
 # Create your views here.
+from myapp import alipay
+from myapp.alipay import alipay_paixienet
 from myapp.models import User, Lun_bo, Sport_f1_shoes, Cart, Order, OrderGoods
 from paixienet import settings
 
@@ -496,3 +498,26 @@ def generateorder(request):
     return JsonResponse(responseData)
 
 
+def notify(request):
+    return JsonResponse({'msg':'success'})
+
+
+def returnurl(request):
+    return HttpResponse('正在跳转，请等待')
+
+
+def pay(request):
+    identifier = request.GET.get('identifier')
+    print(identifier)
+    url = alipay_paixienet.direct_pay(
+        subject='测试订单 --- iphone X',    # 订单名称
+        out_trade_no=identifier,    # 订单号
+        total_amount=9.9,   # 付款金额
+        return_url='http://182.61.56.187/returnurl/'
+    )
+    print(url)
+    # 拼接支付网关
+    alipay_url = 'https://openapi.alipaydev.com/gateway.do?{data}'.format(data=url)
+
+    return JsonResponse({'alipay_url':alipay_url})
+    # return JsonResponse({'alipay_url':111111})

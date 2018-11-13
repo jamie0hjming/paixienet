@@ -1,6 +1,20 @@
 $(function () {
     var sing_price = 0
     var money = 0
+
+    $('#js-go-pay').click(function () {
+
+        var  identifier = $(this).attr('identifier')
+        alert(identifier)
+
+        $.get('/pay/',{'identifier':identifier},function (response) {
+            alert(11111111111111111)
+            alert(response['alipay_url'])
+              window.open(response['alipay_url'], target='_self')
+        })
+    })
+
+
     $('.ttr').each(function () {
         var price = $(this).find('#price').attr('price')
 
@@ -24,4 +38,8 @@ $(function () {
 
         })
     }
+
+
+    
+    
 })

@@ -12,7 +12,7 @@ import json
 
 
 # 支付宝封装(不需要做任何修改)
-from Python1809AXF.settings import ALIPAY_ROOT
+from paixienet.settings import ALIPAY_ROOT
 
 
 class AliPay(object):
@@ -123,14 +123,14 @@ class AliPay(object):
 
 
 # 初始化操作
-appid = '2016091800542542'
-app_notify_url = 'http://112.74.55.3/axf/notifyurl/' # 支付完成后，支付宝调用的(通知AXF服务端)
-return_url = 'http://112.74.55.3/axf/returnurl/' # 支付完成后，AXF客户端跳转的页面
-app_private_key_path = os.path.join(ALIPAY_ROOT, 'axf_si_yao.txt')    # AXF私钥
-alipay_public_key_path = os.path.join(ALIPAY_ROOT, 'alipay_gong_yao.txt')   # 支付宝公钥
+appid = '2016091900550414'
+app_notify_url = 'http://182.61.56.187/notify/' # 支付完成后，支付宝调用的(通知AXF服务端)
+return_url = 'http://182.61.56.187/returnurl/' # 支付完成后，AXF客户端跳转的页面
+app_private_key_path = os.path.join(ALIPAY_ROOT, 'app_private_key.txt')    # AXF私钥
+alipay_public_key_path = os.path.join(ALIPAY_ROOT, 'alipay_public_key.txt')   # 支付宝公钥
 
 # 根据自己申请的进行设置
-alipay_axf = AliPay(
+alipay_paixienet = AliPay(
     appid=appid,  # 设置签约的appid
     app_notify_url=app_notify_url,  # 异步支付通知url
     app_private_key_path=app_private_key_path,  # 设置应用私钥

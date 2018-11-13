@@ -130,3 +130,6 @@ STATICFILES_DIRS = [
 
 # 上传目录
 IMG_ROOT = os.path.join(BASE_DIR, 'static/loadhead')
+
+# key钥匙路径
+ALIPAY_ROOT = os.path.join(BASE_DIR,'static/key')

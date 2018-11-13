@@ -22,9 +22,8 @@ urlpatterns = [
     url(r'^dynflashnum/$', views.dynflashnum, name='dynflashnum'),  # 删除按钮删除对应商品
     url(r'^checkaccount/$', views.checkaccount, name='checkaccount'),  # 删除按钮删除对应商品
     url(r'^generateorder/$', views.generateorder, name='generateorder'),  # 下单
-
-
-
-
+    url(r'^notify/$', views.notify, name='notify'),  # 订单支付后，支付宝给客户端的提示url
+    url(r'^returnurl/$', views.returnurl, name='returnurl'),  # 订单支付后，支付宝给客户端的提示url
+    url(r'^pay/$', views.pay, name='pay'),
 
 ]
